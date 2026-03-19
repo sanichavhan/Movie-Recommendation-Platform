@@ -39,8 +39,7 @@ async function getMovieDetails(id){
 }
 
 const getTopRatedMovies = async () => {
-    const res = await axios.get(`${BASE_URL}/movie/top
-        _rated`, {
+    const res = await axios.get(`${BASE_URL}/movie/top_rated`, {
         params: { api_key: API_KEY }
     });
     return res.data;
