@@ -1,0 +1,149 @@
+@import "./variables";
+@import "./mixins";
+
+.movie-details-page {
+  background: $background-dark;
+  color: $text-primary;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+}
+
+.details-content {
+  flex: 1;
+  padding: $spacing-3xl;
+}
+
+.details-grid {
+  display: grid;
+  grid-template-columns: 1fr 2fr;
+  gap: $spacing-3xl;
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+.details-poster {
+  width: 100%;
+}
+
+.poster-image {
+  width: 100%;
+  border-radius: $radius-lg;
+  @include box-shadow(3);
+  object-fit: cover;
+}
+
+.details-info {
+  h1 {
+    font-size: $font-5xl;
+    margin: 0 0 $spacing-xl 0;
+  }
+}
+
+.details-title {
+  font-size: $font-5xl;
+  margin: 0 0 $spacing-xl 0;
+}
+
+.details-stats {
+  display: flex;
+  gap: $spacing-xl;
+  margin-bottom: $spacing-2xl;
+  flex-wrap: wrap;
+
+  > div {
+    display: flex;
+    flex-direction: column;
+  }
+}
+
+.stat-label {
+  margin: 0;
+  color: $text-secondary;
+  font-size: $font-sm;
+}
+
+.stat-value {
+  margin: $spacing-sm 0 0 0;
+  font-size: $font-xl;
+  color: $accent-gold;
+}
+
+.genres-section {
+  margin-bottom: $spacing-2xl;
+}
+
+.genres-title {
+  margin: 0 0 $spacing-md 0;
+}
+
+.genres-list {
+  display: flex;
+  gap: $spacing-md;
+  flex-wrap: wrap;
+}
+
+.genre-tag {
+  background: $border-color;
+  padding: $spacing-sm $spacing-md;
+  border-radius: $radius-full;
+  font-size: $font-sm;
+}
+
+.overview-section {
+  margin-bottom: $spacing-2xl;
+}
+
+.overview-title {
+  margin: 0 0 $spacing-md 0;
+}
+
+.overview-text {
+  line-height: 1.8;
+  color: $text-muted;
+  margin: 0;
+}
+
+.finance-item {
+  margin-bottom: $spacing-md;
+}
+
+.finance-label {
+  margin: 0;
+  color: $text-secondary;
+  font-size: $font-sm;
+}
+
+.finance-value {
+  margin: $spacing-sm 0 0 0;
+  font-size: $font-base;
+}
+
+.error-page {
+  background: $background-dark;
+  color: $text-primary;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+}
+
+@media (max-width: $breakpoint-lg) {
+  .details-grid {
+    grid-template-columns: 1fr;
+    gap: $spacing-2xl;
+  }
+}
+
+@media (max-width: $breakpoint-md) {
+  .details-content {
+    padding: $spacing-xl;
+  }
+
+  .details-title {
+    font-size: $font-2xl;
+  }
+
+  .details-stats {
+    gap: $spacing-md;
+  }
+}

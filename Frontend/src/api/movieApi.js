@@ -39,3 +39,13 @@ export const getMovieDetails = async (id) => {
     throw error;
   }
 };
+
+export const getMovieCast = async (id) => {
+  try {
+    const response = await axios.get(`/movies/${id}/cast`);
+    return response.data.cast || [];
+  } catch (error) {
+    console.error("Error fetching movie cast:", error);
+    throw error;
+  }
+};

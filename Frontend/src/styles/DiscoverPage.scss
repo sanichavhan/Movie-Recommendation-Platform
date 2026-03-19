@@ -1,0 +1,76 @@
+@import "./variables";
+@import "./mixins";
+
+.discover-page {
+  background: $background-dark;
+  color: $text-primary;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+}
+
+.discover-content {
+  flex: 1;
+  padding: $spacing-3xl;
+}
+
+.discover-heading {
+  margin-bottom: $spacing-2xl;
+  font-size: $font-4xl;
+}
+
+.discover-filters {
+  margin-bottom: $spacing-2xl;
+}
+
+.filters-title {
+  margin-bottom: $spacing-md;
+}
+
+.genre-buttons {
+  display: flex;
+  gap: $spacing-md;
+  flex-wrap: wrap;
+}
+
+.genre-button {
+  @include button-base;
+  padding: $spacing-md $spacing-lg;
+  background: $background-tertiary;
+  border: 1px solid $border-color;
+  color: $text-primary;
+  border-radius: $radius-full;
+  cursor: pointer;
+
+  &.active {
+    background: $primary-color;
+    border-color: $primary-color;
+  }
+
+  &:hover {
+    border-color: $primary-color;
+  }
+}
+
+.discover-results {
+  @include grid-auto-fill;
+}
+
+@media (max-width: $breakpoint-md) {
+  .discover-content {
+    padding: $spacing-xl;
+  }
+
+  .discover-heading {
+    font-size: $font-2xl;
+  }
+
+  .genre-buttons {
+    gap: $spacing-sm;
+  }
+
+  .genre-button {
+    font-size: $font-xs;
+    padding: $spacing-sm $spacing-md;
+  }
+}

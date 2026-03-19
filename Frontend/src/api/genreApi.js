@@ -1,9 +1,19 @@
 import axios from "./axiosInstance";
 
-export const getMovieGenres = () => {
-  return axios.get("/genres/movie");
+export const getMovieGenres = async () => {
+  try {
+    const response = await axios.get("/genres");
+    return response.data;
+  } catch (error) {
+    throw error.response?.data || error.message;
+  }
 };
 
-export const getTVGenres = () => {
-  return axios.get("/genres/tv");
+export const getTVGenres = async () => {
+  try {
+    const response = await axios.get("/genres/tv");
+    return response.data;
+  } catch (error) {
+    throw error.response?.data || error.message;
+  }
 };

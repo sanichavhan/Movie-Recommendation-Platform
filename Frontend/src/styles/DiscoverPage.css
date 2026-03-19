@@ -1,0 +1,82 @@
+.discover-page {
+  background: #0a0e27;
+  color: #fff;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+}
+
+.discover-content {
+  flex: 1;
+  padding: 40px;
+}
+
+.discover-heading {
+  margin-bottom: 30px;
+  font-size: 32px;
+}
+
+.discover-filters {
+  margin-bottom: 30px;
+}
+
+.filters-title {
+  margin-bottom: 12px;
+}
+
+.genre-buttons {
+  display: flex;
+  gap: 12px;
+  flex-wrap: wrap;
+}
+
+.genre-button {
+  padding: 12px 15px;
+  border: none;
+  border-radius: 5px;
+  font-size: 14px;
+  font-weight: bold;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+.genre-button:disabled {
+  opacity: 0.7;
+  cursor: not-allowed;
+}
+.genre-button {
+  padding: 12px 15px;
+  background: #222;
+  border: 1px solid #333;
+  color: #fff;
+  border-radius: 20px;
+  cursor: pointer;
+}
+.genre-button.active {
+  background: #ff6b6b;
+  border-color: #ff6b6b;
+}
+.genre-button:hover {
+  border-color: #ff6b6b;
+}
+
+.discover-results {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
+  gap: 20px;
+}
+
+@media (max-width: 768px) {
+  .discover-content {
+    padding: 20px;
+  }
+  .discover-heading {
+    font-size: 24px;
+  }
+  .genre-buttons {
+    gap: 8px;
+  }
+  .genre-button {
+    font-size: 12px;
+    padding: 8px 12px;
+  }
+}/*# sourceMappingURL=DiscoverPage.css.map */

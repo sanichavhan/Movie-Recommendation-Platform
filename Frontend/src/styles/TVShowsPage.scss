@@ -1,0 +1,72 @@
+@import "./variables";
+@import "./mixins";
+
+.tvshows-page {
+  background: $background-dark;
+  color: $text-primary;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+}
+
+.tvshows-content {
+  flex: 1;
+  padding: $spacing-3xl;
+}
+
+.tvshows-heading {
+  margin-bottom: $spacing-2xl;
+  font-size: $font-4xl;
+}
+
+.tvshows-filters {
+  margin-bottom: $spacing-2xl;
+}
+
+.filter-buttons {
+  display: flex;
+  gap: $spacing-lg;
+}
+
+.filter-button {
+  @include button-base;
+  padding: $spacing-md $spacing-xl;
+  background: $background-tertiary;
+  border: none;
+  color: $text-primary;
+  border-radius: $radius-sm;
+  cursor: pointer;
+  font-size: $font-base;
+  font-weight: bold;
+
+  &.active {
+    background: $primary-color;
+  }
+
+  &:hover {
+    opacity: 0.9;
+  }
+}
+
+.tvshows-results {
+  @include grid-auto-fill;
+}
+
+@media (max-width: $breakpoint-md) {
+  .tvshows-content {
+    padding: $spacing-xl;
+  }
+
+  .tvshows-heading {
+    font-size: $font-2xl;
+  }
+
+  .filter-buttons {
+    gap: $spacing-md;
+  }
+
+  .filter-button {
+    padding: $spacing-sm $spacing-lg;
+    font-size: $font-sm;
+  }
+}

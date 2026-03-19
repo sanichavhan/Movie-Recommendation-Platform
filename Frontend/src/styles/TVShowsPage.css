@@ -1,0 +1,78 @@
+.tvshows-page {
+  background: #0a0e27;
+  color: #fff;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+}
+
+.tvshows-content {
+  flex: 1;
+  padding: 40px;
+}
+
+.tvshows-heading {
+  margin-bottom: 30px;
+  font-size: 32px;
+}
+
+.tvshows-filters {
+  margin-bottom: 30px;
+}
+
+.filter-buttons {
+  display: flex;
+  gap: 15px;
+}
+
+.filter-button {
+  padding: 12px 15px;
+  border: none;
+  border-radius: 5px;
+  font-size: 14px;
+  font-weight: bold;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+.filter-button:disabled {
+  opacity: 0.7;
+  cursor: not-allowed;
+}
+.filter-button {
+  padding: 12px 20px;
+  background: #222;
+  border: none;
+  color: #fff;
+  border-radius: 5px;
+  cursor: pointer;
+  font-size: 16px;
+  font-weight: bold;
+}
+.filter-button.active {
+  background: #ff6b6b;
+}
+.filter-button:hover {
+  opacity: 0.9;
+}
+
+.tvshows-results {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
+  gap: 20px;
+}
+
+@media (max-width: 768px) {
+  .tvshows-content {
+    padding: 20px;
+  }
+  .tvshows-heading {
+    font-size: 24px;
+  }
+  .filter-buttons {
+    gap: 12px;
+  }
+  .filter-button {
+    padding: 8px 15px;
+    font-size: 14px;
+  }
+}/*# sourceMappingURL=TVShowsPage.css.map */

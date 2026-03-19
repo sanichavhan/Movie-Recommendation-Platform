@@ -6,6 +6,9 @@ import MovieDetailsPage from "../pages/MovieDetailsPage"
 import SearchPage from "../pages/SearchPage"
 import LoginPage from "../pages/LoginPage"
 import RegisterPage from "../pages/RegisterPage"
+import DiscoverPage from "../pages/DiscoverPage"
+import TVShowsPage from "../pages/TVShowsPage"
+import PeoplePage from "../pages/PeoplePage"
 
 const AppRoutes = () => {
 
@@ -21,9 +24,17 @@ const AppRoutes = () => {
 
                 <Route path="/search" element={<SearchPage />} />
 
+                <Route path="/discover" element={<DiscoverPage />} />
+
+                <Route path="/tv" element={<TVShowsPage />} />
+
+                <Route path="/people" element={<PeoplePage />} />
+
                 <Route path="/login" element={<LoginPage />} />
 
                 <Route path="/register" element={<RegisterPage />} />
+
+                <Route path="*" element={<HomePage />} />
 
             </Routes>
 

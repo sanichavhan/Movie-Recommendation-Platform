@@ -4,132 +4,186 @@ const jwt = require("jsonwebtoken");
 const redis = require('../config/cache')
 
 async function registerUser(req,res){
-try{
+    try{
+        const {username,email,password} = req.body;
 
-    const {username,email,password} = req.body;
-
-    if(!username || !email || !password){
-        return res.status(400).json({
-            message:"All fields are required"
-        })
-    }
-
-    const isUserAlreadyRegister = await userModel.findOne({
-        $or:[
-            {email},
-            {username}
-        ]
-    })
-
-    if(isUserAlreadyRegister){
-        return res.status(400).json({
-            message:"User already exists"
-        })
-    }
-
-    const hash = await bcrypt.hash(password,10)
-
-    const user = await userModel.create({
-        username,
-        email,
-        password:hash
-    })
-
-    const token = jwt.sign(
-        {
-            id:user._id,
-            username:user.username
-        },
-        process.env.JWT_SECRET,
-        {expiresIn:"3d"}
-    )
-
-    res.cookie("token",token,{
-        httpOnly:true,
-        maxAge:3*24*60*60*1000
-    })
-
-    res.status(201).json({
-        message:"User registered successfully",
-        user:{
-            id:user._id,
-            username:user.username,
-            email:user.email
+        if(!username || !email || !password){
+            return res.status(400).json({
+                message:"All fields are required"
+            })
         }
-    })
 
-}
-    catch(err){
-        res.status(500).json({message:err.message})
+        const isUserAlreadyRegister = await userModel.findOne({
+            $or:[
+                {email},
+                {username}
+            ]
+        })
+
+        if(isUserAlreadyRegister){
+            return res.status(400).json({
+                message:"User already exists"
+            })
+        }
+
+        const user = await userModel.create({
+            username,
+            email,
+            password
+        })
+
+        const token = jwt.sign(
+            {
+                id:user._id,
+                username:user.username
+            },
+            process.env.JWT_SECRET,
+            {expiresIn:"3d"}
+        )
+
+        res.cookie("token",token,{
+            httpOnly:true,
+            maxAge:3*24*60*60*1000
+        })
+
+        res.status(201).json({
+            message:"User registered successfully",
+            user:{
+                id:user._id,
+                username:user.username,
+                email:user.email
+            }
+        })
+
+    }catch(err){
+        console.error("Register Error:", err.message)
+        
+        if(err.message.includes("buffering timed out") || err.message.includes("timeout")){
+            return res.status(503).json({
+                message:"Database service temporarily unavailable. Please try again later."
+            })
+        }
+        
+        if(err.code === 11000){
+            return res.status(400).json({
+                message:"Email or username already exists"
+            })
+        }
+        
+        res.status(500).json({
+            message:err.message || "Registration failed"
+        })
     }
 }
-
 async function userLogin(req,res) {
-    const {username,email,password} = req.body
+    try{
+        const {username,email,password} = req.body
 
-    const user =  await userModel.findOne({
-        $or :[
-            {email},
-            {username},
-        ]
-    }).select('+password')
+        const user =  await userModel.findOne({
+            $or :[
+                {email},
+                {username},
+            ]
+        }).select('+password')
 
-    if(!user){
-        return res.status(400).json({
-            message: "Invalid credentials"
+        if(!user){
+            return res.status(400).json({
+                message: "Invalid credentials"
+            })
+        } 
+
+        const isPasswordValid = await bcrypt.compare(password,user.password)
+
+        if(!isPasswordValid){
+            return res.status(400).json({
+                message: "Invalid credentials"
+            })
+        }
+
+        const token = jwt.sign(
+            {
+                id : user._id,
+                username : user.username
+            },
+            process.env.JWT_SECRET,
+            {
+                expiresIn : "3d"
+            }
+        )
+
+        res.cookie('token',token)
+
+        res.status(200).json({
+            message: "User logged in successfully",
+            user: {
+                id: user._id,
+                username: user.username,
+                email: user.email
+            }
         })
-    } 
-
-    const isPasswordValid = await bcrypt.compare(password,user.password)
-
-    if(!isPasswordValid){
-        return res.status(400).json({
-            message: "Invalid credentials"
+    }catch(err){
+        console.error("Login Error:", err.message)
+        
+        if(err.message.includes("buffering timed out") || err.message.includes("timeout")){
+            return res.status(503).json({
+                message:"Database service temporarily unavailable. Please try again later."
+            })
+        }
+        
+        res.status(500).json({
+            message:err.message || "Login failed"
         })
     }
-
-    const token = jwt.sign(
-        {
-            id : user._id,
-            username : user.username
-        },
-        process.env.JWT_SECRET,
-        {
-            expiresIn : "3d"
-        }
-    )
-
-    res.cookie('token',token)
-
-    res.status(200).json({
-        message: "User logged in successfully",
-        user: {
-            id: user._id,
-            username: user.username,
-            email: user.email
-        }
-    })
 }
 
 async function getMe(req,res){
-    const user = await userModel.findById(req.user.id)
+    try{
+        const user = await userModel.findById(req.user.id)
 
-    res.status(200).json({
-        message : "User Fetched Suucessfully",
-        user
-    })
+        if(!user){
+            return res.status(404).json({
+                message: "User not found"
+            })
+        }
+
+        res.status(200).json({
+            message : "User fetched successfully",
+            user
+        })
+    }catch(err){
+        console.error("GetMe Error:", err.message)
+        
+        if(err.message.includes("buffering timed out") || err.message.includes("timeout")){
+            return res.status(503).json({
+                message:"Database service temporarily unavailable. Please try again later."
+            })
+        }
+        
+        res.status(500).json({
+            message:err.message || "Failed to fetch user"
+        })
+    }
 }
 
 async function logout(req,res){
-    const token = req.cookies.token;
+    try{
+        const token = req.cookies.token;
 
-    res.clearCookie("token")
+        res.clearCookie("token")
 
-    await redis.set(token,Date.now().toString(), "EX", 60 * 60)
+        if(token){
+            await redis.set(token,Date.now().toString(), "EX", 60 * 60)
+        }
 
-    res.status(200).json({
-        message : "Logout Successfully"
-    })
+        res.status(200).json({
+            message : "Logout successfully"
+        })
+    }catch(err){
+        console.error("Logout Error:", err.message)
+        res.status(500).json({
+            message:err.message || "Logout failed"
+        })
+    }
 }
 
 module.exports = {

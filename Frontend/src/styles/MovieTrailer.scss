@@ -1,0 +1,10 @@
+@import "./variables";
+@import "./mixins";
+
+.movie-trailer {
+  margin: $spacing-md 0;
+
+  iframe {
+    max-width: 100%;
+  }
+}

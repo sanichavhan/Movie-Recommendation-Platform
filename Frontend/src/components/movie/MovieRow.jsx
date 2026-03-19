@@ -1,22 +1,21 @@
 import MovieCard from "./MovieCard";
+import "../../styles/MovieRow.scss";
 
 const MovieRow = ({ title, movies = [] }) => {
 
-  if (!movies.length) return null;
+  if (!movies || !movies.length) return null;
 
   return (
-    <div style={{ margin: "20px" }}>
+    <div className="movie-row">
+      <h2 className="movie-row-title">{title}</h2>
 
-      <h2>{title}</h2>
-
-      <div style={{ display: "flex", overflowX: "auto", gap: "10px" }}>
-
+      <div className="movie-row-scroll">
         {movies.map((movie) => (
-          <MovieCard key={movie.id} movie={movie} />
+          <div key={movie.id} className="movie-item">
+            <MovieCard movie={movie} />
+          </div>
         ))}
-
       </div>
-
     </div>
   );
 };

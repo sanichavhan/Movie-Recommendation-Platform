@@ -1,0 +1,116 @@
+@import "./variables";
+@import "./mixins";
+
+.people-page {
+  background: $background-dark;
+  color: $text-primary;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+}
+
+.people-content {
+  flex: 1;
+  padding: $spacing-3xl;
+}
+
+.people-heading {
+  margin-bottom: $spacing-2xl;
+  font-size: $font-4xl;
+}
+
+.people-filters {
+  margin-bottom: $spacing-2xl;
+}
+
+.people-buttons {
+  display: flex;
+  gap: $spacing-lg;
+}
+
+.people-button {
+  @include button-base;
+  padding: $spacing-md $spacing-xl;
+  background: $background-tertiary;
+  border: none;
+  color: $text-primary;
+  border-radius: $radius-sm;
+  cursor: pointer;
+  font-size: $font-base;
+  font-weight: bold;
+
+  &.active {
+    background: $primary-color;
+  }
+
+  &:hover {
+    opacity: 0.9;
+  }
+}
+
+.people-results {
+  @include grid-auto-fill(150px);
+}
+
+.people-link {
+  text-decoration: none;
+  color: inherit;
+  display: block;
+}
+
+.people-card {
+  background: $background-tertiary;
+  border-radius: $radius-md;
+  overflow: hidden;
+  cursor: pointer;
+  @include transition;
+  @include box-shadow(1);
+
+  &:hover {
+    transform: scale(1.05);
+  }
+}
+
+.person-image {
+  width: 100%;
+  height: 200px;
+  object-fit: cover;
+  display: block;
+}
+
+.person-info {
+  padding: $spacing-md;
+}
+
+.person-name {
+  margin: 0 0 $spacing-sm 0;
+  font-size: $font-sm;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.person-role {
+  margin: 0;
+  font-size: $font-xs;
+  color: $text-secondary;
+}
+
+@media (max-width: $breakpoint-md) {
+  .people-content {
+    padding: $spacing-xl;
+  }
+
+  .people-heading {
+    font-size: $font-2xl;
+  }
+
+  .people-buttons {
+    gap: $spacing-md;
+  }
+
+  .people-button {
+    padding: $spacing-sm $spacing-lg;
+    font-size: $font-sm;
+  }
+}

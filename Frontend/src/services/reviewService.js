@@ -1,16 +1,13 @@
 import * as reviewApi from "../api/reviewApi";
 
 export const fetchMovieReviews = async (movieId) => {
-  const res = await reviewApi.getMovieReviews(movieId);
-  return res.data;
+  return await reviewApi.getMovieReviews(movieId);
 };
 
 export const createReview = async (reviewData) => {
-  const res = await reviewApi.addReview(reviewData);
-  return res.data;
+  return await reviewApi.addReview(reviewData);
 };
 
 export const removeReview = async (id) => {
-  const res = await reviewApi.deleteReview(id);
-  return res.data;
+  return await reviewApi.deleteReview(id);
 };

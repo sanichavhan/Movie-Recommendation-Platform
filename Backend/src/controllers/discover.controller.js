@@ -5,12 +5,15 @@ const discoverMovies = async (req, res) => {
     try {
 
         const data = await discoverService.discoverMovies(req.query);
+        
+        // Ensure we return an array
+        const moviesArray = Array.isArray(data) ? data : (data || []);
 
-        res.json(data);
+        res.json(moviesArray);
 
     } catch (error) {
-
-        res.status(500).json({ message: error.message });
+        console.error("Discover error:", error.message);
+        res.status(500).json({ message: error.message, error: error.toString() });
 
     }
 };

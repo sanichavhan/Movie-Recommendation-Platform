@@ -1,41 +1,18 @@
 import * as authApi from "../api/authApi";
 
-const register = async (userData) => {
-  try {
-    const res = await authApi.registerUser(userData);
-    return res.data;
-  } catch (error) {
-    throw error.response?.data || "Registration failed";
-  }
-};
+const register = (userData) => authApi.registerUser(userData);
 
-const login = async (userData) => {
-  try {
-    const res = await authApi.loginUser(userData);
-    return res.data;
-  } catch (error) {
-    throw error.response?.data || "Login failed";
-  }
-};
-const logout = async () => {
-  try {
-    const res = await authApi.logoutUser();
-    return res.data;
-  } catch (error) {
-    throw error.response?.data || "Logout failed";
-  }
-};
+const login = (userData) => authApi.loginUser(userData);
 
-const getCurrentUser = async () => {
-  const res = await authApi.getCurrentUser();
-  return res.data;
-};
+const logout = () => authApi.logoutUser();
+
+const getMe = () => authApi.getCurrentUser();
 
 const authService = {
-    login,
-    register,
-    logout,
-    getCurrentUser
-}
+  login,
+  register,
+  logout,
+  getMe
+};
 
-export default authService
+export default authService;

@@ -3,7 +3,7 @@ import ReactPlayer from "react-player";
 const MovieTrailer = ({ url }) => {
 
   return (
-    <div style={{margin:"20px 0"}}>
+    <div className="movie-trailer">
 
       <ReactPlayer url={url} controls width="100%" />
 

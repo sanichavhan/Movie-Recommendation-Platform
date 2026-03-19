@@ -1,0 +1,32 @@
+@import "../styles/variables";
+@import "../styles/mixins";
+
+.error-message {
+  background: $error-color;
+  color: $text-primary;
+  padding: $spacing-lg $spacing-xl;
+  margin: $spacing-xl;
+  border-radius: $radius-sm;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  @include box-shadow(1);
+
+  .error-text {
+    flex: 1;
+  }
+
+  .error-close {
+    background: none;
+    border: none;
+    color: $text-primary;
+    cursor: pointer;
+    font-size: $font-xl;
+    padding: 0 $spacing-lg;
+    @include transition;
+
+    &:hover {
+      opacity: 0.8;
+    }
+  }
+}

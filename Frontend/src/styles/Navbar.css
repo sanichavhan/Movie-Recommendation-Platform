@@ -1,0 +1,107 @@
+.navbar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 15px;
+  padding: 15px 40px;
+  background: linear-gradient(to right, #111, #222);
+  color: #fff;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
+  position: sticky;
+  top: 0;
+  z-index: 100;
+}
+.navbar .navbar-brand {
+  margin: 0;
+  font-size: 24px;
+  flex-shrink: 0;
+}
+.navbar .navbar-nav {
+  display: flex;
+  gap: 20px;
+  align-items: center;
+  flex: 1;
+  margin-left: 40px;
+}
+.navbar .navbar-nav a {
+  color: #fff;
+  font-size: 16px;
+  transition: all 0.3s ease;
+}
+.navbar .navbar-nav a:hover {
+  color: #ff6b6b;
+}
+.navbar .navbar-auth {
+  display: flex;
+  gap: 15px;
+  align-items: center;
+}
+.navbar .navbar-auth .user-info {
+  font-size: 14px;
+}
+.navbar .navbar-auth .logout-btn {
+  padding: 12px 15px;
+  border: none;
+  border-radius: 5px;
+  font-size: 14px;
+  font-weight: bold;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+.navbar .navbar-auth .logout-btn:disabled {
+  opacity: 0.7;
+  cursor: not-allowed;
+}
+.navbar .navbar-auth .logout-btn {
+  padding: 8px 15px;
+  background: #ff6b6b;
+  color: #fff;
+  font-size: 14px;
+}
+.navbar .navbar-auth .logout-btn:hover {
+  opacity: 0.9;
+}
+.navbar .navbar-auth .auth-links {
+  display: flex;
+  gap: 15px;
+  align-items: center;
+}
+.navbar .navbar-auth .auth-links a {
+  padding: 8px 15px;
+  border-radius: 5px;
+  cursor: pointer;
+  font-size: 14px;
+  transition: all 0.3s ease;
+}
+.navbar .navbar-auth .auth-links a.login-link {
+  border: 1px solid #fff;
+}
+.navbar .navbar-auth .auth-links a.login-link:hover {
+  background: rgba(255, 255, 255, 0.1);
+}
+.navbar .navbar-auth .auth-links a.register-link {
+  background: #ff6b6b;
+  color: #fff;
+  border: none;
+}
+.navbar .navbar-auth .auth-links a.register-link:hover {
+  opacity: 0.9;
+}
+@media (max-width: 768px) {
+  .navbar {
+    flex-direction: column;
+    gap: 12px;
+  }
+  .navbar .navbar-nav {
+    flex: 1;
+    margin-left: 0;
+    width: 100%;
+    flex-wrap: wrap;
+    justify-content: center;
+  }
+  .navbar .navbar-auth {
+    width: 100%;
+    justify-content: center;
+    flex-wrap: wrap;
+  }
+}/*# sourceMappingURL=Navbar.css.map */

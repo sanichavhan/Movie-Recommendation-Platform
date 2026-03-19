@@ -2,6 +2,9 @@ const express = require("express");
 const cors = require("cors");
 const cookieParser = require('cookie-parser')
 const app = express();
+const morgan = require("morgan");
+
+app.use(morgan("dev"));
 
 app.use(cors({
     origin: "http://localhost:5173",
@@ -32,6 +35,6 @@ app.use("/api/review",reviewRoutes)
 app.use("/api/keywords", keywordRoutes);
 app.use("/api/collections", collectionRoutes);
 app.use("/api/search", searchRoutes);
-app.use("api/discover",discoverRoutes)
+app.use("/api/discover",discoverRoutes)
 
 module.exports = app;

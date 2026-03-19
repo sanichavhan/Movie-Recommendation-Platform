@@ -7,7 +7,7 @@ const getPopularPeople = async () => {
     const res = await axios.get(`${BASE_URL}/person/popular`, {
         params: { api_key: API_KEY }
     });
-    return res.data;
+    return res.data.results;
 };
 
 const getPersonById = async (id) => {
@@ -18,12 +18,10 @@ const getPersonById = async (id) => {
 };
 
 const getTrendingPeople = async () => {
-
     const res = await axios.get(`${BASE_URL}/trending/person/day`, {
         params: { api_key: API_KEY }
     });
-
-    return res.data;
+    return res.data.results;
 };
 
 module.exports = { 

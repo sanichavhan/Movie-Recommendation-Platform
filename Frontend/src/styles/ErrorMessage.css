@@ -1,0 +1,26 @@
+.error-message {
+  background: #dc3545;
+  color: #fff;
+  padding: 15px 20px;
+  margin: 20px;
+  border-radius: 5px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
+}
+.error-message .error-text {
+  flex: 1;
+}
+.error-message .error-close {
+  background: none;
+  border: none;
+  color: #fff;
+  cursor: pointer;
+  font-size: 20px;
+  padding: 0 15px;
+  transition: all 0.3s ease;
+}
+.error-message .error-close:hover {
+  opacity: 0.8;
+}/*# sourceMappingURL=ErrorMessage.css.map */

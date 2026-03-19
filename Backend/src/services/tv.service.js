@@ -7,14 +7,14 @@ const getTrendingTV = async () => {
     const res = await axios.get(`${BASE_URL}/trending/tv/day`, {
         params: { api_key: API_KEY }
     });
-    return res.data;
+    return res.data.results;
 };
 
 const getPopularTV = async () => {
     const res = await axios.get(`${BASE_URL}/tv/popular`, {
         params: { api_key: API_KEY }
     });
-    return res.data;
+    return res.data.results;
 };
 
 const getTVById = async (id) => {

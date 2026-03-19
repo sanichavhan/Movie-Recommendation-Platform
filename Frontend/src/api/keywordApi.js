@@ -1,5 +1,10 @@
 import axios from "./axiosInstance";
 
-export const getMovieKeywords = (movieId) => {
-  return axios.get(`/keywords/${movieId}`);
+export const getMovieKeywords = async (movieId) => {
+  try {
+    const response = await axios.get(`/keywords/${movieId}`);
+    return response.data;
+  } catch (error) {
+    throw error.response?.data || error.message;
+  }
 };

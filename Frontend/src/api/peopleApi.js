@@ -1,13 +1,28 @@
 import axios from "./axiosInstance";
 
-export const getPopularPeople = () => {
-  return axios.get("/people/popular");
+export const getPopularPeople = async () => {
+  try {
+    const response = await axios.get("/people/popular");
+    return response.data;
+  } catch (error) {
+    throw error.response?.data || error.message;
+  }
 };
 
-export const getPersonDetails = (id) => {
-  return axios.get(`/people/${id}`);
+export const getTrendingPeople = async () => {
+  try {
+    const response = await axios.get("/people/trending");
+    return response.data;
+  } catch (error) {
+    throw error.response?.data || error.message;
+  }
 };
 
-export const getPersonMovies = (id) => {
-  return axios.get(`/people/${id}/movies`);
+export const getPersonDetails = async (id) => {
+  try {
+    const response = await axios.get(`/people/${id}`);
+    return response.data;
+  } catch (error) {
+    throw error.response?.data || error.message;
+  }
 };

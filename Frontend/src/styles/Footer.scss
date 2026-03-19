@@ -1,0 +1,46 @@
+@import "../styles/variables";
+@import "../styles/mixins";
+
+.footer {
+  text-align: center;
+  padding: $spacing-3xl $spacing-lg;
+  background: linear-gradient(to top, $background-secondary, $background-dark);
+  color: $text-secondary;
+  border-top: 1px solid $border-color;
+  margin-top: $spacing-3xl;
+
+  .footer-links {
+    display: flex;
+    justify-content: center;
+    gap: $spacing-2xl;
+    margin-bottom: $spacing-lg;
+    flex-wrap: wrap;
+
+    a {
+      color: $text-primary;
+      font-size: $font-sm;
+      @include transition;
+
+      &:hover {
+        color: $primary-color;
+      }
+    }
+  }
+
+  .footer-copy {
+    margin: $spacing-lg 0 0 0;
+  }
+
+  .footer-attribution {
+    margin: $spacing-sm 0 0 0;
+    font-size: $font-xs;
+  }
+
+  @media (max-width: $breakpoint-sm) {
+    padding: $spacing-2xl $spacing-md;
+
+    .footer-links {
+      gap: $spacing-lg;
+    }
+  }
+}

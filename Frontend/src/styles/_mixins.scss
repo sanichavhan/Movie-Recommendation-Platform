@@ -1,0 +1,76 @@
+@import "./variables";
+
+// Mixins
+@mixin flex-center {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+@mixin flex-between {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+@mixin transition($property: all, $duration: $transition-base, $timing: ease) {
+  transition: $property $duration $timing;
+}
+
+@mixin hover-scale($scale: 1.05) {
+  &:hover {
+    transform: scale($scale);
+  }
+}
+
+@mixin box-shadow($level: 1) {
+  @if $level == 1 {
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
+  } @else if $level == 2 {
+    box-shadow: 0 4px 16px rgba(0, 0, 0, 0.3);
+  } @else if $level == 3 {
+    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.5);
+  }
+}
+
+@mixin button-base {
+  padding: $spacing-md $spacing-lg;
+  border: none;
+  border-radius: $radius-sm;
+  font-size: $font-sm;
+  font-weight: bold;
+  cursor: pointer;
+  @include transition;
+
+  &:disabled {
+    opacity: 0.7;
+    cursor: not-allowed;
+  }
+}
+
+@mixin input-base {
+  padding: $spacing-md;
+  border: 1px solid $border-color;
+  border-radius: $radius-sm;
+  background: $background-tertiary;
+  color: $text-primary;
+  font-size: $font-sm;
+  font-family: inherit;
+  @include transition(border-color);
+
+  &:focus {
+    outline: none;
+    border-color: $primary-color;
+  }
+}
+
+@mixin grid-auto-fill($min-width: 180px) {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax($min-width, 1fr));
+  gap: $spacing-xl;
+}
+
+@mixin link-reset {
+  text-decoration: none;
+  color: inherit;
+}

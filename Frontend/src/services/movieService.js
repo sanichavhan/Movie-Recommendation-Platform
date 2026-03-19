@@ -1,21 +1,21 @@
 import * as movieApi from "../api/movieApi";
 
 export const fetchTrendingMovies = async () => {
-  const res = await movieApi.getTrendingMovies();
-  return res.data;
+  return await movieApi.getTrendingMovies();
 };
 
 export const fetchPopularMovies = async () => {
-  const res = await movieApi.getPopularMovies();
-  return res.data;
+  return await movieApi.getPopularMovies();
 };
 
 export const fetchMovieDetails = async (id) => {
-  const res = await movieApi.getMovieDetails(id);
-  return res.data;
+  return await movieApi.getMovieDetails(id);
+};
+
+export const fetchMovieCast = async (id) => {
+  return await movieApi.getMovieCast(id);
 };
 
 export const searchMovies = async (query) => {
-  const res = await movieApi.searchMovies(query);
-  return res.data;
+  return await movieApi.searchMovies(query);
 };

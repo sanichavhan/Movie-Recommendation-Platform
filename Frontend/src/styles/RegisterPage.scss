@@ -1,0 +1,68 @@
+@import "./variables";
+@import "./FormStyles";
+
+.register-page {
+  background: $background-dark;
+  color: $text-primary;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+}
+
+.register-container {
+  flex: 1;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: $spacing-3xl $spacing-lg;
+}
+
+.register-form-wrapper {
+  background: $background-secondary;
+  padding: $spacing-3xl;
+  border-radius: $radius-lg;
+  width: 100%;
+  max-width: 400px;
+  @include box-shadow(3);
+}
+
+.register-heading {
+  text-align: center;
+  margin-bottom: $spacing-2xl;
+  font-size: $font-2xl;
+}
+
+.register-error {
+  background: $error-color;
+  color: $text-primary;
+  padding: $spacing-md;
+  border-radius: $radius-sm;
+  margin-bottom: $spacing-xl;
+  font-size: $font-sm;
+}
+
+.register-link {
+  text-align: center;
+  margin-top: $spacing-xl;
+  font-size: $font-sm;
+  color: $text-secondary;
+
+  .login-link {
+    color: $primary-color;
+    text-decoration: none;
+
+    &:hover {
+      text-decoration: underline;
+    }
+  }
+}
+
+@media (max-width: $breakpoint-md) {
+  .register-container {
+    padding: $spacing-2xl $spacing-md;
+  }
+
+  .register-form-wrapper {
+    padding: $spacing-2xl;
+  }
+}

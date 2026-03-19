@@ -1,3 +1,5 @@
+/* eslint-disable no-unused-vars */
+/* eslint-disable react-refresh/only-export-components */
 import React, { createContext, useContext, useState, useEffect } from 'react';
 import authService from '../services/authService';
 
@@ -11,8 +13,8 @@ export const AuthProvider = ({ children }) => {
   useEffect(() => {
     const checkAuth = async () => {
       try {
-        const userData = await authService.getMe();
-        setUser(userData);
+        const response = await authService.getMe();
+        setUser(response.user);
       } catch (err) {
         setUser(null);
       } finally {
@@ -27,10 +29,11 @@ export const AuthProvider = ({ children }) => {
     try {
       setError(null);
       const response = await authService.register(userData);
-      setUser(response);
-      return response;
+      setUser(response.user);
+      return response.user;
     } catch (err) {
-      setError(err.message || 'Registration failed');
+      const errorMsg = err.response?.data?.message || err.message || 'Registration failed';
+      setError(errorMsg);
       throw err;
     }
   };
@@ -39,10 +42,11 @@ export const AuthProvider = ({ children }) => {
     try {
       setError(null);
       const response = await authService.login(credentials);
-      setUser(response);
-      return response;
+      setUser(response.user);
+      return response.user;
     } catch (err) {
-      setError(err.message || 'Login failed');
+      const errorMsg = err.response?.data?.message || err.message || 'Login failed';
+      setError(errorMsg);
       throw err;
     }
   };

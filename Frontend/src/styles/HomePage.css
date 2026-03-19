@@ -1,0 +1,15 @@
+.home-page {
+  background: #0a0e27;
+  color: #fff;
+  min-height: 100vh;
+}
+
+.home-content {
+  padding: 12px 40px;
+}
+
+@media (max-width: 768px) {
+  .home-content {
+    padding: 12px;
+  }
+}/*# sourceMappingURL=HomePage.css.map */

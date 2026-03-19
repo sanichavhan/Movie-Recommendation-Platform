@@ -1,0 +1,35 @@
+@import "./variables";
+@import "./mixins";
+
+// Form styles shared between login and register
+.form-group {
+  margin-bottom: $spacing-lg;
+}
+
+.form-group-last {
+  margin-bottom: $spacing-xl;
+}
+
+.form-label {
+  display: block;
+  margin-bottom: $spacing-md;
+  font-size: $font-sm;
+  color: $text-primary;
+  font-weight: 500;
+}
+
+.form-input {
+  @include input-base;
+  width: 100%;
+}
+
+.form-button {
+  @include button-base;
+  width: 100%;
+  background: $primary-color;
+  color: $text-primary;
+
+  &:hover:not(:disabled) {
+    opacity: 0.9;
+  }
+}

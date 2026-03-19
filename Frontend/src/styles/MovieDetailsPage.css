@@ -1,0 +1,141 @@
+.movie-details-page {
+  background: #0a0e27;
+  color: #fff;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+}
+
+.details-content {
+  flex: 1;
+  padding: 40px;
+}
+
+.details-grid {
+  display: grid;
+  grid-template-columns: 1fr 2fr;
+  gap: 40px;
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+.details-poster {
+  width: 100%;
+}
+
+.poster-image {
+  width: 100%;
+  border-radius: 10px;
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.5);
+  -o-object-fit: cover;
+     object-fit: cover;
+}
+
+.details-info h1 {
+  font-size: 36px;
+  margin: 0 0 20px 0;
+}
+
+.details-title {
+  font-size: 36px;
+  margin: 0 0 20px 0;
+}
+
+.details-stats {
+  display: flex;
+  gap: 20px;
+  margin-bottom: 30px;
+  flex-wrap: wrap;
+}
+.details-stats > div {
+  display: flex;
+  flex-direction: column;
+}
+
+.stat-label {
+  margin: 0;
+  color: #aaa;
+  font-size: 14px;
+}
+
+.stat-value {
+  margin: 8px 0 0 0;
+  font-size: 20px;
+  color: #ffd700;
+}
+
+.genres-section {
+  margin-bottom: 30px;
+}
+
+.genres-title {
+  margin: 0 0 12px 0;
+}
+
+.genres-list {
+  display: flex;
+  gap: 12px;
+  flex-wrap: wrap;
+}
+
+.genre-tag {
+  background: #333;
+  padding: 8px 12px;
+  border-radius: 20px;
+  font-size: 14px;
+}
+
+.overview-section {
+  margin-bottom: 30px;
+}
+
+.overview-title {
+  margin: 0 0 12px 0;
+}
+
+.overview-text {
+  line-height: 1.8;
+  color: #ddd;
+  margin: 0;
+}
+
+.finance-item {
+  margin-bottom: 12px;
+}
+
+.finance-label {
+  margin: 0;
+  color: #aaa;
+  font-size: 14px;
+}
+
+.finance-value {
+  margin: 8px 0 0 0;
+  font-size: 16px;
+}
+
+.error-page {
+  background: #0a0e27;
+  color: #fff;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+}
+
+@media (max-width: 1024px) {
+  .details-grid {
+    grid-template-columns: 1fr;
+    gap: 30px;
+  }
+}
+@media (max-width: 768px) {
+  .details-content {
+    padding: 20px;
+  }
+  .details-title {
+    font-size: 24px;
+  }
+  .details-stats {
+    gap: 12px;
+  }
+}/*# sourceMappingURL=MovieDetailsPage.css.map */

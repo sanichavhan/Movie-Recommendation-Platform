@@ -1,16 +1,13 @@
 import * as peopleApi from "../api/peopleApi";
 
 export const fetchPopularPeople = async () => {
-  const res = await peopleApi.getPopularPeople();
-  return res.data;
+  return await peopleApi.getPopularPeople();
 };
 
 export const fetchPersonDetails = async (id) => {
-  const res = await peopleApi.getPersonDetails(id);
-  return res.data;
+  return await peopleApi.getPersonDetails(id);
 };
 
 export const fetchPersonMovies = async (id) => {
-  const res = await peopleApi.getPersonMovies(id);
-  return res.data;
+  return await peopleApi.getPersonMovies(id);
 };

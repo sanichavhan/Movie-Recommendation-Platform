@@ -1,9 +1,19 @@
 import axios from "./axiosInstance";
 
-export const getMediaVideos = (id) => {
-  return axios.get(`/media/${id}/videos`);
+export const getMediaVideos = async (id) => {
+  try {
+    const response = await axios.get(`/media/${id}/videos`);
+    return response.data;
+  } catch (error) {
+    throw error.response?.data || error.message;
+  }
 };
 
-export const getMediaImages = (id) => {
-  return axios.get(`/media/${id}/images`);
+export const getMediaImages = async (id) => {
+  try {
+    const response = await axios.get(`/media/${id}/images`);
+    return response.data;
+  } catch (error) {
+    throw error.response?.data || error.message;
+  }
 };

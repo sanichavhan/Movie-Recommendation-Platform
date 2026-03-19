@@ -103,7 +103,9 @@ const getNowPlayingMovies = async (req, res) => {
 const getMovieCast = async (req, res) => {
     try {
         const data = await movieService.getMovieCast(req.params.id);
-        res.json(data);
+        // TMDB returns { cast: [...], crew: [...] }
+        // We only want the cast array
+        res.json({ cast: data.cast || [] });
     } catch (error) {
         res.status(500).json({ message: error.message });
     }

@@ -1,0 +1,92 @@
+@import "./variables";
+@import "./mixins";
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  background: $background-dark;
+  color: $text-primary;
+  line-height: 1.6;
+}
+
+::-webkit-scrollbar {
+  width: 8px;
+}
+
+::-webkit-scrollbar-track {
+  background: $background-secondary;
+}
+
+::-webkit-scrollbar-thumb {
+  background: $border-color;
+  border-radius: 4px;
+
+  &:hover {
+    background: #555;
+  }
+}
+
+button {
+  font-family: inherit;
+}
+
+input {
+  font-family: inherit;
+}
+
+a {
+  @include link-reset;
+}
+
+// Layout
+.app-container {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+  background: $background-dark;
+  color: $text-primary;
+}
+
+.app-main {
+  flex: 1;
+  padding: $spacing-3xl;
+}
+
+// Grid
+.grid {
+  @include grid-auto-fill;
+
+  &.grid-sm {
+    @include grid-auto-fill(150px);
+  }
+
+  &.grid-lg {
+    @include grid-auto-fill(250px);
+  }
+}
+
+// Common utilities
+.text-center {
+  text-align: center;
+}
+
+.text-muted {
+  color: $text-secondary;
+}
+
+.mt-lg {
+  margin-top: $spacing-2xl;
+}
+
+.mb-lg {
+  margin-bottom: $spacing-2xl;
+}

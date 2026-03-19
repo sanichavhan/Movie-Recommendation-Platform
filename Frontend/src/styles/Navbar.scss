@@ -1,0 +1,111 @@
+@import "../styles/variables";
+@import "../styles/mixins";
+
+.navbar {
+  @include flex-between;
+  gap: $spacing-lg;
+  padding: $spacing-lg $spacing-3xl;
+  background: linear-gradient(to right, $background-secondary, $background-tertiary);
+  color: $text-primary;
+  @include box-shadow(1);
+  position: sticky;
+  top: 0;
+  z-index: 100;
+
+  .navbar-brand {
+    margin: 0;
+    font-size: $font-2xl;
+    flex-shrink: 0;
+  }
+
+  .navbar-nav {
+    display: flex;
+    gap: $spacing-xl;
+    align-items: center;
+    flex: 1;
+    margin-left: $spacing-3xl;
+
+    a {
+      color: $text-primary;
+      font-size: $font-base;
+      @include transition;
+
+      &:hover {
+        color: $primary-color;
+      }
+    }
+  }
+
+  .navbar-auth {
+    display: flex;
+    gap: $spacing-lg;
+    align-items: center;
+
+    .user-info {
+      font-size: $font-sm;
+    }
+
+    .logout-btn {
+      @include button-base;
+      padding: $spacing-sm $spacing-lg;
+      background: $primary-color;
+      color: $text-primary;
+      font-size: $font-sm;
+
+      &:hover {
+        opacity: 0.9;
+      }
+    }
+
+    .auth-links {
+      display: flex;
+      gap: $spacing-lg;
+      align-items: center;
+
+      a {
+        padding: $spacing-sm $spacing-lg;
+        border-radius: $radius-sm;
+        cursor: pointer;
+        font-size: $font-sm;
+        @include transition;
+
+        &.login-link {
+          border: 1px solid $text-primary;
+
+          &:hover {
+            background: rgba(255, 255, 255, 0.1);
+          }
+        }
+
+        &.register-link {
+          background: $primary-color;
+          color: $text-primary;
+          border: none;
+
+          &:hover {
+            opacity: 0.9;
+          }
+        }
+      }
+    }
+  }
+
+  @media (max-width: $breakpoint-md) {
+    flex-direction: column;
+    gap: $spacing-md;
+
+    .navbar-nav {
+      flex: 1;
+      margin-left: 0;
+      width: 100%;
+      flex-wrap: wrap;
+      justify-content: center;
+    }
+
+    .navbar-auth {
+      width: 100%;
+      justify-content: center;
+      flex-wrap: wrap;
+    }
+  }
+}

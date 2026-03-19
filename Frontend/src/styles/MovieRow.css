@@ -1,0 +1,45 @@
+.movie-row {
+  padding: 40px 40px;
+  border-top: 1px solid #333;
+}
+.movie-row .movie-row-title {
+  margin: 0 0 20px 0;
+  font-size: 24px;
+  color: #fff;
+  border-left: 4px solid #ff6b6b;
+  padding-left: 15px;
+}
+.movie-row .movie-row-scroll {
+  display: flex;
+  overflow-x: auto;
+  gap: 20px;
+  padding-bottom: 12px;
+  scroll-behavior: smooth;
+}
+.movie-row .movie-row-scroll .movie-item {
+  flex-shrink: 0;
+}
+.movie-row::-webkit-scrollbar {
+  height: 8px;
+}
+.movie-row::-webkit-scrollbar-track {
+  background: #111;
+}
+.movie-row::-webkit-scrollbar-thumb {
+  background: #555;
+  border-radius: 4px;
+}
+.movie-row::-webkit-scrollbar-thumb:hover {
+  background: #777;
+}
+@media (max-width: 768px) {
+  .movie-row {
+    padding: 30px;
+  }
+  .movie-row .movie-row-title {
+    font-size: 20px;
+  }
+  .movie-row .movie-row-scroll {
+    gap: 15px;
+  }
+}/*# sourceMappingURL=MovieRow.css.map */

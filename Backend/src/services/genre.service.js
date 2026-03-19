@@ -8,7 +8,7 @@ const getMovieGenres = async () => {
         params: { api_key: API_KEY }
     });
 
-    return res.data;
+    return res.data.genres;
 };
 
 module.exports = { getMovieGenres };
