@@ -42,7 +42,7 @@ const PeoplePage = () => {
         ) : (
           <div className="people-results">
             {people.map((person) => (
-              <Link key={person.id} to={`/people/${person.id}`} className="people-link">
+              <Link key={person.id} to={`/actor/${person.id}`} className="people-link">
                 <div className="people-card">
                   <img
                     src={`https://image.tmdb.org/t/p/w200${person.profile_path}`}

@@ -1,7 +1,10 @@
 import React from 'react';
+import { useNavigate } from 'react-router-dom';
 import '../../styles/CastComponent.scss';
 
 const CastComponent = ({ cast = [] }) => {
+  const navigate = useNavigate();
+
   if (!cast || cast.length === 0) {
     return (
       <div className="cast-section">
@@ -11,12 +14,27 @@ const CastComponent = ({ cast = [] }) => {
     );
   }
 
+  const handleActorClick = (actorId) => {
+    navigate(`/actor/${actorId}`);
+  };
+
   return (
     <div className="cast-section">
       <h3 className="cast-title">Cast</h3>
       <div className="cast-carousel">
         {cast.slice(0, 12).map((actor) => (
-          <div key={actor.id} className="cast-card">
+          <div
+            key={actor.id}
+            className="cast-card"
+            onClick={() => handleActorClick(actor.id)}
+            role="button"
+            tabIndex={0}
+            onKeyDown={(e) => {
+              if (e.key === 'Enter' || e.key === ' ') {
+                handleActorClick(actor.id);
+              }
+            }}
+          >
             <div className="cast-image-wrapper">
               {actor.profile_path ? (
                 <img

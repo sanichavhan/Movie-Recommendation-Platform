@@ -1,0 +1,263 @@
+@use './variables' as *;
+@use './mixins' as *;
+
+.actor-details-page {
+  background: $background-dark;
+  color: $text-primary;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+}
+
+.actor-details-container {
+  flex: 1;
+  max-width: 1400px;
+  margin: 0 auto;
+  width: 100%;
+  padding: $spacing-2xl $spacing-xl;
+
+  @media (max-width: $breakpoint-md) {
+    padding: $spacing-xl $spacing-md;
+  }
+
+  @media (max-width: $breakpoint-sm) {
+    padding: $spacing-lg $spacing-sm;
+  }
+}
+
+.back-button {
+  background: transparent;
+  border: 2px solid #00d4ff;
+  color: #00d4ff;
+  padding: $spacing-md $spacing-lg;
+  border-radius: $radius-md;
+  font-size: $font-sm;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all $transition-base ease;
+  margin-bottom: $spacing-2xl;
+
+  &:hover {
+    background: #00d4ff;
+    color: $background-dark;
+    transform: translateX(-5px);
+  }
+
+  &:active {
+    transform: scale(0.98);
+  }
+}
+
+.actor-details-grid {
+  display: grid;
+  grid-template-columns: 1fr 2fr;
+  gap: $spacing-3xl;
+
+  @media (max-width: $breakpoint-lg) {
+    grid-template-columns: 1fr;
+    gap: $spacing-2xl;
+  }
+}
+
+// Profile Section (Left)
+.actor-profile-section {
+  display: flex;
+  flex-direction: column;
+  gap: $spacing-2xl;
+}
+
+.actor-profile-image {
+  position: relative;
+  border-radius: $radius-lg;
+  overflow: hidden;
+  background: linear-gradient(135deg, rgba(0, 212, 255, 0.1), rgba(100, 200, 255, 0.1));
+  aspect-ratio: 2/3;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform $transition-slow ease;
+  }
+
+  &:hover img {
+    transform: scale(1.05);
+  }
+}
+
+.no-image {
+  color: #666;
+  font-size: $font-base;
+  text-align: center;
+  padding: $spacing-2xl;
+}
+
+.quick-info {
+  display: grid;
+  gap: $spacing-lg;
+}
+
+.info-item {
+  background: linear-gradient(135deg, rgba(20, 20, 35, 0.8), rgba(10, 10, 20, 0.9));
+  padding: $spacing-lg;
+  border-radius: $radius-md;
+  border: 1px solid rgba(0, 212, 255, 0.2);
+  transition: all $transition-base ease;
+
+  &:hover {
+    border-color: #00d4ff;
+    box-shadow: 0 4px 12px rgba(0, 212, 255, 0.15);
+    transform: translateY(-2px);
+  }
+}
+
+.info-label {
+  font-size: $font-xs;
+  color: #888;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  margin-bottom: $spacing-sm;
+}
+
+.info-value {
+  font-size: $font-lg;
+  font-weight: 700;
+  color: #fff;
+  margin: 0;
+}
+
+// Details Section (Right)
+.actor-details-section {
+  display: flex;
+  flex-direction: column;
+  gap: $spacing-2xl;
+}
+
+.actor-name {
+  font-size: $font-5xl;
+  font-weight: 800;
+  color: #fff;
+  margin: 0 0 $spacing-lg 0;
+  text-shadow: 0 2px 8px rgba(0, 0, 0, 0.5);
+
+  @media (max-width: $breakpoint-md) {
+    font-size: $font-3xl;
+  }
+}
+
+.section-title {
+  font-size: $font-2xl;
+  font-weight: 700;
+  color: #fff;
+  margin: 0 0 $spacing-lg 0;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  border-bottom: 2px solid #00d4ff;
+  padding-bottom: $spacing-md;
+}
+
+// Details Grid
+.details-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  gap: $spacing-lg;
+}
+
+.detail-item {
+  background: linear-gradient(135deg, rgba(20, 20, 35, 0.6), rgba(10, 10, 20, 0.8));
+  padding: $spacing-lg;
+  border-radius: $radius-md;
+  border-left: 4px solid #00d4ff;
+  transition: all $transition-base ease;
+
+  &:hover {
+    background: linear-gradient(135deg, rgba(20, 20, 35, 0.9), rgba(10, 10, 20, 0.95));
+    box-shadow: 0 8px 16px rgba(0, 212, 255, 0.1);
+    transform: translateY(-4px);
+  }
+}
+
+.detail-label {
+  font-size: $font-xs;
+  color: #00d4ff;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  margin-bottom: $spacing-sm;
+  font-weight: 600;
+}
+
+.detail-value {
+  font-size: $font-base;
+  color: $text-primary;
+  margin: 0;
+  line-height: 1.6;
+}
+
+.imdb-link,
+.website-link {
+  color: #00d4ff;
+  text-decoration: none;
+  font-weight: 600;
+  transition: all $transition-base ease;
+
+  &:hover {
+    color: #fff;
+    text-decoration: underline;
+  }
+}
+
+// Biography Section
+.biography-section {
+  background: linear-gradient(135deg, rgba(20, 20, 35, 0.5), rgba(10, 10, 20, 0.7));
+  padding: $spacing-2xl;
+  border-radius: $radius-lg;
+  border: 1px solid rgba(0, 212, 255, 0.15);
+}
+
+.biography-text {
+  font-size: $font-base;
+  line-height: 1.8;
+  color: $text-muted;
+  margin: 0;
+  text-align: justify;
+}
+
+// Also Known As
+.also-known-section {
+  padding: $spacing-lg 0;
+}
+
+.also-known-list {
+  display: flex;
+  flex-wrap: wrap;
+  gap: $spacing-md;
+}
+
+.alias-tag {
+  background: linear-gradient(135deg, rgba(0, 212, 255, 0.2), rgba(100, 200, 255, 0.1));
+  color: #00d4ff;
+  padding: $spacing-sm $spacing-lg;
+  border-radius: $radius-full;
+  font-size: $font-sm;
+  border: 1px solid rgba(0, 212, 255, 0.3);
+  transition: all $transition-base ease;
+
+  &:hover {
+    background: linear-gradient(135deg, rgba(0, 212, 255, 0.3), rgba(100, 200, 255, 0.2));
+    border-color: #00d4ff;
+  }
+}
+
+// Error Page
+.error-page {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+}
+
+.error-page .back-button {
+  margin: $spacing-2xl $spacing-xl;
+}

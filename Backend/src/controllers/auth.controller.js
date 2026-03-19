@@ -56,9 +56,17 @@ async function registerUser(req,res){
         })
 
     }catch(err){
-        console.error("Register Error:", err.message)
+        console.error("Register Error:", err)
+        console.error("Error message:", err.message)
         
-        if(err.message.includes("buffering timed out") || err.message.includes("timeout")){
+        // Handle SSL/TLS errors
+        if(err.message.includes("SSL") || err.message.includes("ssl") || err.message.includes("tls")){
+            return res.status(503).json({
+                message:"SSL/TLS connection error. Database service unreachable. Please try again later."
+            })
+        }
+        
+        if(err.message.includes("buffering timed out") || err.message.includes("timeout") || err.message.includes("ECONNREFUSED")){
             return res.status(503).json({
                 message:"Database service temporarily unavailable. Please try again later."
             })
@@ -122,9 +130,18 @@ async function userLogin(req,res) {
             }
         })
     }catch(err){
-        console.error("Login Error:", err.message)
+        console.error("Login Error:", err)
+        console.error("Error message:", err.message)
         
-        if(err.message.includes("buffering timed out") || err.message.includes("timeout")){
+        // Handle SSL/TLS errors
+        if(err.message.includes("SSL") || err.message.includes("ssl") || err.message.includes("tls")){
+            return res.status(503).json({
+                message:"SSL/TLS connection error. Database service unreachable. Please try again later."
+            })
+        }
+        
+        // Handle timeout errors
+        if(err.message.includes("buffering timed out") || err.message.includes("timeout") || err.message.includes("ECONNREFUSED")){
             return res.status(503).json({
                 message:"Database service temporarily unavailable. Please try again later."
             })

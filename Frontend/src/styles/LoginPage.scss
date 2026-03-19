@@ -1,5 +1,6 @@
-@import "./variables";
-@import "./FormStyles";
+@use './variables' as *;
+@use './mixins' as *;
+@use './FormStyles' as *;
 
 .login-page {
   background: $background-dark;
