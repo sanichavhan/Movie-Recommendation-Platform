@@ -1,6 +1,6 @@
 .error-message {
   background: #dc3545;
-  color: #fff;
+  color: #ffffff;
   padding: 15px 20px;
   margin: 20px;
   border-radius: 5px;
@@ -15,7 +15,7 @@
 .error-message .error-close {
   background: none;
   border: none;
-  color: #fff;
+  color: #ffffff;
   cursor: pointer;
   font-size: 20px;
   padding: 0 15px;

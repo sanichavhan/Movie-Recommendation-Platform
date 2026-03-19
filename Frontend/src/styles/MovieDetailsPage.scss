@@ -2,7 +2,7 @@
 @use './mixins' as *;
 
 .movie-details-page {
-  background: $background-dark;
+  background: linear-gradient(180deg, $background-dark 0%, $background-secondary 100%);
   color: $text-primary;
   min-height: 100vh;
   display: flex;
@@ -12,6 +12,7 @@
 .details-content {
   flex: 1;
   padding: $spacing-3xl;
+  animation: fadeInPage 0.6s ease-out;
 }
 
 .details-grid {
@@ -24,6 +25,7 @@
 
 .details-poster {
   width: 100%;
+  animation: slideInLeft 0.6s ease-out;
 }
 
 .poster-image {
@@ -31,9 +33,18 @@
   border-radius: $radius-lg;
   @include box-shadow(3);
   object-fit: cover;
+  border: 2px solid rgba(0, 212, 255, 0.2);
+  transition: all 0.3s ease-out;
+
+  &:hover {
+    border-color: #00d4ff;
+    box-shadow: 0 0 30px rgba(0, 212, 255, 0.4);
+  }
 }
 
 .details-info {
+  animation: slideInRight 0.6s ease-out;
+
   h1 {
     font-size: $font-5xl;
     margin: 0 0 $spacing-xl 0;
@@ -43,6 +54,11 @@
 .details-title {
   font-size: $font-5xl;
   margin: 0 0 $spacing-xl 0;
+  background: linear-gradient(135deg, #ff6b6b 0%, #ff8787 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  font-weight: 700;
 }
 
 .details-stats {
@@ -54,6 +70,17 @@
   > div {
     display: flex;
     flex-direction: column;
+    padding: $spacing-lg;
+    background: linear-gradient(135deg, rgba(255, 107, 107, 0.1) 0%, rgba(0, 212, 255, 0.1) 100%);
+    border-radius: $radius-md;
+    border: 1px solid rgba(0, 212, 255, 0.2);
+    transition: all 0.3s ease-out;
+
+    &:hover {
+      border-color: #00d4ff;
+      background: linear-gradient(135deg, rgba(255, 107, 107, 0.15) 0%, rgba(0, 212, 255, 0.15) 100%);
+      transform: translateY(-2px);
+    }
   }
 }
 
@@ -61,12 +88,19 @@
   margin: 0;
   color: $text-secondary;
   font-size: $font-sm;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 1px;
 }
 
 .stat-value {
   margin: $spacing-sm 0 0 0;
   font-size: $font-xl;
-  color: $accent-gold;
+  background: linear-gradient(135deg, #ff6b6b 0%, #00d4ff 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  font-weight: 700;
 }
 
 .genres-section {
@@ -75,6 +109,8 @@
 
 .genres-title {
   margin: 0 0 $spacing-md 0;
+  font-weight: 600;
+  color: #00d4ff;
 }
 
 .genres-list {
@@ -84,10 +120,20 @@
 }
 
 .genre-tag {
-  background: $border-color;
+  background: linear-gradient(135deg, rgba(255, 107, 107, 0.15) 0%, rgba(0, 212, 255, 0.15) 100%);
   padding: $spacing-sm $spacing-md;
   border-radius: $radius-full;
   font-size: $font-sm;
+  border: 1px solid #ff6b6b;
+  color: #ff6b6b;
+  font-weight: 600;
+  transition: all 0.3s ease-out;
+
+  &:hover {
+    background: transparent;
+    border-color: #00d4ff;
+    color: #00d4ff;
+  }
 }
 
 .overview-section {
@@ -96,35 +142,84 @@
 
 .overview-title {
   margin: 0 0 $spacing-md 0;
+  font-weight: 600;
+  color: #00d4ff;
 }
 
 .overview-text {
   line-height: 1.8;
-  color: $text-muted;
+  color: $text-secondary;
   margin: 0;
+  font-size: $font-base;
 }
 
 .finance-item {
-  margin-bottom: $spacing-md;
+  margin-bottom: $spacing-lg;
+  padding: $spacing-lg;
+  background: linear-gradient(135deg, rgba(0, 212, 255, 0.05) 0%, rgba(255, 107, 107, 0.05) 100%);
+  border-left: 4px solid #00d4ff;
+  border-radius: $radius-md;
 }
 
 .finance-label {
   margin: 0;
   color: $text-secondary;
   font-size: $font-sm;
+  font-weight: 600;
 }
 
 .finance-value {
   margin: $spacing-sm 0 0 0;
   font-size: $font-base;
+  color: $accent-gold;
+  font-weight: 700;
 }
 
 .error-page {
-  background: $background-dark;
+  background: linear-gradient(180deg, $background-dark 0%, $background-secondary 100%);
   color: $text-primary;
   min-height: 100vh;
   display: flex;
   flex-direction: column;
+}
+
+.error-container {
+  flex: 1;
+  padding: $spacing-3xl;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+@keyframes fadeInPage {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+@keyframes slideInLeft {
+  from {
+    opacity: 0;
+    transform: translateX(-30px);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+@keyframes slideInRight {
+  from {
+    opacity: 0;
+    transform: translateX(30px);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
 }
 
 @media (max-width: $breakpoint-lg) {
@@ -137,6 +232,7 @@
 @media (max-width: $breakpoint-md) {
   .details-content {
     padding: $spacing-xl;
+    padding-bottom: 350px;
   }
 
   .details-title {
@@ -145,5 +241,13 @@
 
   .details-stats {
     gap: $spacing-md;
+
+    > div {
+      padding: $spacing-md;
+    }
+  }
+
+  .stat-value {
+    font-size: $font-base;
   }
 }

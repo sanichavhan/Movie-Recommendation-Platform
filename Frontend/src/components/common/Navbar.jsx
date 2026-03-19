@@ -1,9 +1,11 @@
 import { Link, useNavigate } from "react-router-dom";
 import { useAuth } from "../../context/AuthContext";
+import { useTheme } from "../../context/ThemeContext";
 import "../../styles/Navbar.scss";
 
 const Navbar = () => {
   const { user, logout } = useAuth();
+  const { isDark, toggleTheme } = useTheme();
   const navigate = useNavigate();
 
   const handleLogout = async () => {
@@ -17,20 +19,29 @@ const Navbar = () => {
 
   return (
     <nav className="navbar">
-      <h2 className="navbar-brand">🎬 MovieApp</h2>
+      <h2 className="navbar-brand">🎬 FilmyZone</h2>
 
-      <div className="navbar-nav">
-        <Link to="/">Home</Link>
-        <Link to="/discover">Discover</Link>
-        <Link to="/tv">TV Shows</Link>
-        <Link to="/people">People</Link>
-        <Link to="/search">Search</Link>
+      <div className="navbar-center">
+        <div className="navbar-nav">
+          <Link to="/">Home</Link>
+          <Link to="/discover">Discover</Link>
+          <Link to="/tv">TV Shows</Link>
+          <Link to="/people">People</Link>
+          <Link to="/search">Search</Link>
+        </div>
       </div>
 
       <div className="navbar-auth">
         {user ? (
           <>
             <span className="user-info">👤 {user.username || user.email}</span>
+            <button
+              onClick={toggleTheme}
+              className="theme-toggle-btn"
+              title={isDark ? "Switch to Light Mode" : "Switch to Dark Mode"}
+            >
+              {isDark ? "☀️" : "🌙"}
+            </button>
             <button
               onClick={handleLogout}
               className="logout-btn"
@@ -39,14 +50,23 @@ const Navbar = () => {
             </button>
           </>
         ) : (
-          <div className="auth-links">
-            <Link to="/login" className="login-link">
-              Login
-            </Link>
-            <Link to="/register" className="register-link">
-              Register
-            </Link>
-          </div>
+          <>
+            <button
+              onClick={toggleTheme}
+              className="theme-toggle-btn"
+              title={isDark ? "Switch to Light Mode" : "Switch to Dark Mode"}
+            >
+              {isDark ? "☀️" : "🌙"}
+            </button>
+            <div className="auth-links">
+              <Link to="/login" className="login-link">
+                Login
+              </Link>
+              <Link to="/register" className="register-link">
+                Register
+              </Link>
+            </div>
+          </>
         )}
       </div>
     </nav>

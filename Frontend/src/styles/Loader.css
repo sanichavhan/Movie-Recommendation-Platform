@@ -5,7 +5,8 @@
   flex-direction: column;
   min-height: 400px;
   font-size: 18px;
-  color: #fff;
+  color: #ffffff;
+  background: radial-gradient(circle at center, rgba(0, 212, 255, 0.05) 0%, transparent 70%);
 }
 .loader .loader-spinner {
   display: flex;
@@ -15,22 +16,58 @@
   text-align: center;
 }
 .loader .loader-circle {
-  border: 4px solid #333;
-  border-top: 4px solid #ff6b6b;
+  border: 4px solid rgba(255, 107, 107, 0.2);
+  border-top: 4px solid transparent;
+  border-right: 4px solid #ff6b6b;
   border-radius: 50%;
+  width: 60px;
+  height: 60px;
+  animation: spinAdvanced 1.5s cubic-bezier(0.4, 0, 0.6, 1) infinite;
+  margin: 0 auto 20px;
+  box-shadow: inset 0 0 10px rgba(0, 212, 255, 0.2), 0 0 20px rgba(255, 107, 107, 0.3);
+}
+.loader .loader-circle::after {
+  content: "";
+  position: absolute;
   width: 50px;
   height: 50px;
-  animation: spin 1s linear infinite;
-  margin: 0 auto 20px;
+  border-radius: 50%;
+  border: 4px solid transparent;
+  border-top: 4px solid #00d4ff;
+  animation: spinReverse 3s linear infinite;
 }
 .loader .loader-text {
-  color: #fff;
+  color: #b0b0b0;
+  font-weight: 600;
+  letter-spacing: 1px;
+  animation: pulse 2s ease-in-out infinite;
 }
-@keyframes spin {
+@keyframes spinAdvanced {
+  0% {
+    transform: rotate(0deg);
+    box-shadow: inset 0 0 10px rgba(0, 212, 255, 0.2), 0 0 20px rgba(255, 107, 107, 0.3);
+  }
+  50% {
+    box-shadow: inset 0 0 10px rgba(0, 212, 255, 0.5), 0 0 40px rgba(255, 107, 107, 0.6);
+  }
+  100% {
+    transform: rotate(360deg);
+    box-shadow: inset 0 0 10px rgba(0, 212, 255, 0.2), 0 0 20px rgba(255, 107, 107, 0.3);
+  }
+}
+@keyframes spinReverse {
   0% {
     transform: rotate(0deg);
   }
   100% {
-    transform: rotate(360deg);
+    transform: rotate(-360deg);
+  }
+}
+@keyframes pulse {
+  0%, 100% {
+    opacity: 0.7;
+  }
+  50% {
+    opacity: 1;
   }
 }/*# sourceMappingURL=Loader.css.map */

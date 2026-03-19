@@ -10,16 +10,16 @@
   display: block;
   margin-bottom: 12px;
   font-size: 14px;
-  color: #fff;
+  color: #ffffff;
   font-weight: 500;
 }
 
 .form-input {
   padding: 12px;
-  border: 1px solid #333;
+  border: 1px solid #2a2a2a;
   border-radius: 5px;
-  background: #222;
-  color: #fff;
+  background: #1a1f3a;
+  color: #ffffff;
   font-size: 14px;
   font-family: inherit;
   transition: border-color 0.3s ease;
@@ -48,7 +48,7 @@
 .form-button {
   width: 100%;
   background: #ff6b6b;
-  color: #fff;
+  color: #ffffff;
 }
 .form-button:hover:not(:disabled) {
   opacity: 0.9;

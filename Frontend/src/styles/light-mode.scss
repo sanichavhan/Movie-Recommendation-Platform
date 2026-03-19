@@ -1,0 +1,268 @@
+/* Light Mode Theme Styles */
+
+[data-theme="light"] {
+    /* Background Colors */
+    --bg-dark: #f5f5f5;
+    --bg-secondary: #ffffff;
+    --bg-tertiary: #f0f0f0;
+    --bg-light: #e8e8e8;
+
+    /* Text Colors */
+    --text-primary: #1a1a1a;
+    --text-secondary: #4a4a4a;
+    --text-muted: #6a6a6a;
+
+    /* Navbar */
+    --navbar-bg: linear-gradient(90deg, rgba(255, 255, 255, 0.95) 0%, rgba(245, 245, 245, 0.95) 100%);
+    --navbar-border: rgba(255, 107, 107, 0.15);
+
+    /* Cards and Backgrounds */
+    --card-bg: #ffffff;
+    --card-border: #e0e0e0;
+    --shadow-light: rgba(0, 0, 0, 0.08);
+}
+
+/* Apply light mode colors to HTML elements */
+[data-theme="light"] {
+    background-color: #f5f5f5;
+    color: #1a1a1a;
+
+    /* Navbar Light Mode */
+    .navbar {
+        background: linear-gradient(90deg, rgba(255, 255, 255, 0.98) 0%, rgba(245, 245, 245, 0.98) 100%);
+        border-bottom-color: rgba(255, 107, 107, 0.15);
+
+        .navbar-brand {
+            background: linear-gradient(135deg, #ff6b6b 0%, #ff8787 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .navbar-nav a {
+            color: #1a1a1a;
+
+            &:hover {
+                color: #ff6b6b;
+            }
+        }
+
+        .user-info {
+            color: #4a4a4a;
+        }
+
+        .theme-toggle-btn {
+            background: linear-gradient(135deg, rgba(255, 107, 107, 0.15), rgba(0, 212, 255, 0.15));
+            border-color: rgba(0, 212, 255, 0.3);
+
+            &:hover {
+                background: linear-gradient(135deg, rgba(255, 107, 107, 0.25), rgba(0, 212, 255, 0.25));
+                box-shadow: 0 0 15px rgba(255, 107, 107, 0.3);
+            }
+        }
+
+        .auth-links a {
+            &.login-link {
+                border-color: #ff6b6b;
+                color: #ff6b6b;
+
+                &:hover {
+                    background: rgba(255, 107, 107, 0.1);
+                }
+            }
+
+            &.register-link {
+                background: #ff6b6b;
+                color: #ffffff;
+            }
+        }
+    }
+
+    /* Page Backgrounds */
+    .home-page,
+    .search-page,
+    .movie-details-page,
+    .discover-page,
+    .tvshows-page,
+    .people-page {
+        background: #f5f5f5;
+        color: #1a1a1a;
+    }
+
+    /* Movie Cards */
+    .movie-card {
+        background: #ffffff;
+        border-color: #e0e0e0;
+        box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
+
+        &:hover {
+            box-shadow: 0 8px 24px rgba(0, 0, 0, 0.12);
+            border-color: #ff6b6b;
+        }
+
+        .movie-rating {
+            background: rgba(255, 215, 0, 0.1);
+            color: #ffb700;
+        }
+
+        .movie-title {
+            color: #1a1a1a;
+        }
+
+        .movie-year {
+            color: #4a4a4a;
+        }
+    }
+
+    /* Search Page */
+    .search-input-wrapper {
+        background: linear-gradient(135deg, rgba(255, 107, 107, 0.05) 0%, rgba(0, 212, 255, 0.05) 100%);
+        border-color: rgba(0, 212, 255, 0.2);
+
+        &:focus-within {
+            background: linear-gradient(135deg, rgba(255, 107, 107, 0.1) 0%, rgba(0, 212, 255, 0.1) 100%);
+            border-color: rgba(0, 212, 255, 0.4);
+        }
+    }
+
+    .search-input {
+        color: #1a1a1a;
+
+        &::placeholder {
+            color: rgba(26, 26, 26, 0.5);
+        }
+    }
+
+    .recent-search-item {
+        background: linear-gradient(135deg, rgba(255, 107, 107, 0.1), rgba(0, 212, 255, 0.1));
+        border-color: rgba(0, 212, 255, 0.2);
+
+        .recent-text {
+            color: #1a1a1a;
+
+            &:hover {
+                color: #ff6b6b;
+            }
+        }
+
+        &:hover {
+            background: linear-gradient(135deg, rgba(255, 107, 107, 0.15), rgba(0, 212, 255, 0.15));
+            border-color: #ff6b6b;
+        }
+    }
+
+    /* Movie Details Page */
+    .movie-details-content {
+        background: linear-gradient(135deg, #f5f5f5 0%, #f0f0f0 100%);
+    }
+
+    .movie-details-header {
+        h1,
+        .details-title {
+            color: #1a1a1a;
+        }
+
+        .details-meta {
+            color: #4a4a4a;
+        }
+    }
+
+    .details-stats {
+        background: rgba(255, 255, 255, 0.8);
+        border-color: #e0e0e0;
+
+        .stat-item {
+            border-right-color: #e0e0e0;
+
+            .stat-label {
+                color: #4a4a4a;
+            }
+
+            .stat-value {
+                color: #1a1a1a;
+            }
+        }
+    }
+
+    /* Forms */
+    .form-group input,
+    .form-group textarea,
+    .form-group select {
+        background: #ffffff;
+        color: #1a1a1a;
+        border-color: #e0e0e0;
+
+        &:focus {
+            border-color: #ff6b6b;
+            background: #ffffff;
+        }
+
+        &::placeholder {
+            color: rgba(26, 26, 26, 0.5);
+        }
+    }
+
+    /* Loader */
+    .loader {
+        .spinner {
+            border-color: rgba(255, 107, 107, 0.1);
+            border-top-color: #ff6b6b;
+        }
+    }
+
+    /* Footer */
+    .footer {
+        background: linear-gradient(135deg, #ffffff 0%, #f5f5f5 100%);
+        border-top-color: #e0e0e0;
+        color: #4a4a4a;
+
+        a {
+            color: #ff6b6b;
+
+            &:hover {
+                color: #ff8787;
+            }
+        }
+    }
+
+    /* Empty State */
+    .search-empty,
+    .empty-state {
+        color: #1a1a1a;
+
+        h2 {
+            background: linear-gradient(90deg, #ff6b6b, #ff8787);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        p {
+            color: #4a4a4a;
+        }
+    }
+
+    /* Trending Title */
+    .trending-title {
+        color: #1a1a1a;
+    }
+
+    /* Headings */
+    h1,
+    h2,
+    h3,
+    h4,
+    h5,
+    h6 {
+        color: #1a1a1a;
+    }
+
+    /* Links */
+    a {
+        color: #ff6b6b;
+
+        &:hover {
+            color: #ff8787;
+        }
+    }
+}

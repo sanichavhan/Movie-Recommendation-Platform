@@ -1,6 +1,6 @@
 .people-page {
   background: #0a0e27;
-  color: #fff;
+  color: #ffffff;
   min-height: 100vh;
   display: flex;
   flex-direction: column;
@@ -40,9 +40,9 @@
 }
 .people-button {
   padding: 12px 20px;
-  background: #222;
+  background: #1a1f3a;
   border: none;
-  color: #fff;
+  color: #ffffff;
   border-radius: 5px;
   cursor: pointer;
   font-size: 16px;
@@ -68,7 +68,7 @@
 }
 
 .people-card {
-  background: #222;
+  background: #1a1f3a;
   border-radius: 8px;
   overflow: hidden;
   cursor: pointer;
@@ -102,7 +102,7 @@
 .person-role {
   margin: 0;
   font-size: 12px;
-  color: #aaa;
+  color: #b0b0b0;
 }
 
 @media (max-width: 768px) {

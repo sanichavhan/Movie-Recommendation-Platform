@@ -4,10 +4,11 @@
 .footer {
   text-align: center;
   padding: $spacing-3xl $spacing-lg;
-  background: linear-gradient(to top, $background-secondary, $background-dark);
+  background: linear-gradient(to bottom, $background-secondary, $background-dark);
   color: $text-secondary;
-  border-top: 1px solid $border-color;
+//   border-top: 2px solid rgba(255, 107, 107, 0.4);
   margin-top: $spacing-3xl;
+  animation: slideUp 0.5s ease-out;
 
   .footer-links {
     display: flex;
@@ -20,20 +21,38 @@
       color: $text-primary;
       font-size: $font-sm;
       @include transition;
+      position: relative;
+
+      &::after {
+        content: '';
+        position: absolute;
+        bottom: -5px;
+        left: 0;
+        width: 0;
+        height: 2px;
+        background: linear-gradient(to right, #ff6b6b, #00d4ff);
+        @include transition;
+      }
 
       &:hover {
-        color: $primary-color;
+        color: #ff6b6b;
+
+        &::after {
+          width: 100%;
+        }
       }
     }
   }
 
   .footer-copy {
     margin: $spacing-lg 0 0 0;
+    font-size: $font-sm;
   }
 
   .footer-attribution {
     margin: $spacing-sm 0 0 0;
     font-size: $font-xs;
+    color: #00d4ff;
   }
 
   @media (max-width: $breakpoint-sm) {
@@ -42,5 +61,21 @@
     .footer-links {
       gap: $spacing-lg;
     }
+
+    .footer-copy,
+    .footer-attribution {
+      font-size: $font-xs;
+    }
+  }
+}
+
+@keyframes slideUp {
+  from {
+    transform: translateY(100%);
+    opacity: 0;
+  }
+  to {
+    transform: translateY(0);
+    opacity: 1;
   }
 }

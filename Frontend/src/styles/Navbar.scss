@@ -5,33 +5,63 @@
   @include flex-between;
   gap: $spacing-lg;
   padding: $spacing-lg $spacing-3xl;
-  background: linear-gradient(to right, $background-secondary, $background-tertiary);
+  background: linear-gradient(90deg, rgba(17, 17, 17, 0.95) 0%, rgba(34, 34, 34, 0.95) 100%);
   color: $text-primary;
   @include box-shadow(1);
   position: sticky;
   top: 0;
   z-index: 100;
+  border-bottom: 2px solid rgba(255, 107, 107, 0.2);
+  animation: slideDown 0.5s ease-out;
 
   .navbar-brand {
     margin: 0;
     font-size: $font-2xl;
     flex-shrink: 0;
+    background: linear-gradient(135deg, #ff6b6b 0%, #ff8787 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    font-weight: 700;
+    letter-spacing: 1px;
+  }
+
+  .navbar-center {
+    flex: 1;
+    display: flex;
+    justify-content: center;
   }
 
   .navbar-nav {
     display: flex;
-    gap: $spacing-xl;
+    gap: $spacing-2xl;
     align-items: center;
-    flex: 1;
-    margin-left: $spacing-3xl;
 
     a {
       color: $text-primary;
       font-size: $font-base;
       @include transition;
+      position: relative;
+      font-weight: 500;
+      padding: $spacing-sm 0;
+
+      &::after {
+        content: '';
+        position: absolute;
+        bottom: -5px;
+        left: 0;
+        width: 0;
+        height: 2px;
+        background: linear-gradient(90deg, #ff6b6b 0%, #00d4ff 100%);
+        @include transition;
+      }
 
       &:hover {
-        color: $primary-color;
+        color: #ff6b6b;
+
+        &::after {
+          width: 100%;
+        }
       }
     }
   }
@@ -40,20 +70,53 @@
     display: flex;
     gap: $spacing-lg;
     align-items: center;
+    flex-shrink: 0;
 
     .user-info {
       font-size: $font-sm;
+      color: $text-secondary;
+    }
+
+    .theme-toggle-btn {
+      background: linear-gradient(135deg, rgba(0, 212, 255, 0.2), rgba(255, 107, 107, 0.2));
+      border: 2px solid rgba(0, 212, 255, 0.4);
+      color: $text-primary;
+      font-size: 20px;
+      width: 40px;
+      height: 40px;
+      border-radius: 50%;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      transition: all 0.3s ease;
+      padding: 0;
+
+      &:hover {
+        background: linear-gradient(135deg, rgba(0, 212, 255, 0.3), rgba(255, 107, 107, 0.3));
+        border-color: #00d4ff;
+        transform: scale(1.1) rotate(20deg);
+        box-shadow: 0 0 15px rgba(0, 212, 255, 0.4);
+      }
+
+      &:active {
+        transform: scale(0.95);
+      }
     }
 
     .logout-btn {
       @include button-base;
       padding: $spacing-sm $spacing-lg;
-      background: $primary-color;
-      color: $text-primary;
+      background: linear-gradient(135deg, #ff6b6b 0%, #ff8787 100%);
+      color: white;
       font-size: $font-sm;
+      font-weight: 600;
+      border: none;
+      @include transition;
 
       &:hover {
-        opacity: 0.9;
+        transform: translateY(-2px);
+        @include box-shadow(2);
       }
     }
 
@@ -68,12 +131,15 @@
         cursor: pointer;
         font-size: $font-sm;
         @include transition;
+        font-weight: 600;
 
         &.login-link {
-          border: 1px solid $text-primary;
+          border: 2px solid #00d4ff;
+          color: #00d4ff;
 
           &:hover {
-            background: rgba(255, 255, 255, 0.1);
+            background: rgba(0, 212, 255, 0.15);
+            transform: translateY(-2px);
           }
         }
 
@@ -107,5 +173,16 @@
       justify-content: center;
       flex-wrap: wrap;
     }
+  }
+}
+
+@keyframes slideDown {
+  from {
+    transform: translateY(-100%);
+    opacity: 0;
+  }
+  to {
+    transform: translateY(0);
+    opacity: 1;
   }
 }

@@ -1,6 +1,6 @@
 .home-page {
   background: #0a0e27;
-  color: #fff;
+  color: #ffffff;
   min-height: 100vh;
 }
 
@@ -8,8 +8,15 @@
   padding: 12px 40px;
 }
 
+.genres-container {
+  margin-top: 40px;
+  padding-top: 40px;
+  border-top: 2px solid rgba(255, 107, 107, 0.2);
+}
+
 @media (max-width: 768px) {
   .home-content {
     padding: 12px;
+    padding-bottom: 400px;
   }
 }/*# sourceMappingURL=HomePage.css.map */

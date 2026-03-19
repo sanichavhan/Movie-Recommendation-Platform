@@ -1,7 +1,22 @@
 import { Link } from "react-router-dom";
+import { useRef, useEffect } from "react";
+import { animateMovieCard, animateMovieCardHover } from "../../utils/animations";
 import "../../styles/MovieCard.scss";
 
 const MovieCard = ({ movie, onError }) => {
+  const cardRef = useRef(null);
+
+  useEffect(() => {
+    animateMovieCard(cardRef.current);
+  }, []);
+
+  const handleMouseEnter = () => {
+    animateMovieCardHover(cardRef.current, true);
+  };
+
+  const handleMouseLeave = () => {
+    animateMovieCardHover(cardRef.current, false);
+  };
 
   if (!movie || !movie.id) {
     return null;
@@ -13,7 +28,12 @@ const MovieCard = ({ movie, onError }) => {
 
   return (
     <Link to={`/movie/${movie.id}`} style={{ textDecoration: 'none' }}>
-      <div className="movie-card">
+      <div
+        className="movie-card"
+        ref={cardRef}
+        onMouseEnter={handleMouseEnter}
+        onMouseLeave={handleMouseLeave}
+      >
         <div className="movie-card-image">
           <img
             src={image}

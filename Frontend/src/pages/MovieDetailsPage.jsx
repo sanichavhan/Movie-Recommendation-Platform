@@ -1,10 +1,11 @@
 import React from "react"
-import { useParams } from "react-router-dom"
+import { useParams, useNavigate } from "react-router-dom"
 import { useMovieDetails } from "../hooks/movies/useMovieDetails"
 import { useCast } from "../hooks/movies/useCast"
 
 import Loader from "../components/common/Loader"
 import ErrorMessage from "../components/common/ErrorMessage"
+import EmptyState from "../components/common/EmptyState"
 import Navbar from "../components/common/Navbar"
 import Footer from "../components/common/Footer"
 import CastComponent from "../components/movie/CastComponent"
@@ -13,6 +14,7 @@ import "../styles/MovieDetailsPage.scss"
 const MovieDetailsPage = () => {
 
     const { id } = useParams()
+    const navigate = useNavigate()
 
     const { movie, loading, error } = useMovieDetails(id)
     const { cast, loading: castLoading } = useCast(id)
@@ -22,12 +24,50 @@ const MovieDetailsPage = () => {
     if (error) return (
         <div className="error-page">
             <Navbar />
-            <ErrorMessage message={error} />
+            <div className="error-container">
+                <EmptyState
+                    icon="⚠️"
+                    title="Unable to Load Movie"
+                    message={error || "We couldn't find the details for this movie. Please try again later."}
+                    action={
+                        <div className="empty-state-action">
+                            <button className="primary" onClick={() => navigate("/")}>
+                                Go to Home
+                            </button>
+                            <button className="secondary" onClick={() => window.location.reload()}>
+                                Try Again
+                            </button>
+                        </div>
+                    }
+                />
+            </div>
             <Footer />
         </div>
     )
 
-    if (!movie || !movie.id) return <Loader />
+    if (!movie || !movie.id) return (
+        <div className="error-page">
+            <Navbar />
+            <div className="error-container">
+                <EmptyState
+                    icon="🎬"
+                    title="Movie Details Not Available"
+                    message="Sorry, we couldn't find the details for this movie. It may have been removed or the ID might be invalid."
+                    action={
+                        <div className="empty-state-action">
+                            <button className="primary" onClick={() => navigate("/")}>
+                                Back to Home
+                            </button>
+                            <button className="secondary" onClick={() => navigate("/discover")}>
+                                Discover Movies
+                            </button>
+                        </div>
+                    }
+                />
+            </div>
+            <Footer />
+        </div>
+    )
 
     return (
         <div className="movie-details-page">

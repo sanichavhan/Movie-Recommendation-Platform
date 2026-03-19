@@ -11,7 +11,23 @@
   margin-bottom: $spacing-2xl;
   border-radius: $radius-lg;
   overflow: hidden;
-  @include box-shadow(2);
+  @include box-shadow(3);
+  animation: bannerFadeIn 0.8s ease-out;
+
+  &::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: linear-gradient(
+      135deg,
+      rgba(255, 107, 107, 0.1) 0%,
+      rgba(0, 212, 255, 0.1) 100%
+    );
+    z-index: 0;
+  }
 
   .banner-overlay {
     position: absolute;
@@ -19,7 +35,11 @@
     left: 0;
     right: 0;
     bottom: 0;
-    background: linear-gradient(to bottom, rgba(0, 0, 0, 0.3), rgba(0, 0, 0, 0.8));
+    background: linear-gradient(
+      to bottom,
+      rgba(0, 0, 0, 0.2),
+      rgba(10, 14, 39, 0.95)
+    );
     z-index: 1;
   }
 
@@ -29,11 +49,16 @@
     padding: $spacing-3xl;
     color: $text-primary;
     max-width: 600px;
+    animation: slideUp 0.6s ease-out;
 
     .banner-title {
       font-size: $font-6xl;
       margin: 0 0 $spacing-xl 0;
-      font-weight: bold;
+      font-weight: 700;
+      background: linear-gradient(135deg, #ff6b6b 0%, #ff8787 100%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
     }
 
     .banner-meta {
@@ -41,6 +66,8 @@
       gap: $spacing-xl;
       margin-bottom: $spacing-xl;
       font-size: $font-base;
+      color: $accent-cyan;
+      font-weight: 600;
     }
 
     .banner-overview {
@@ -50,6 +77,7 @@
       max-height: 100px;
       overflow: hidden;
       text-overflow: ellipsis;
+      color: $text-secondary;
     }
   }
 
@@ -86,5 +114,27 @@
         max-height: 50px;
       }
     }
+  }
+}
+
+@keyframes bannerFadeIn {
+  from {
+    opacity: 0;
+    scale: 1.05;
+  }
+  to {
+    opacity: 1;
+    scale: 1;
+  }
+}
+
+@keyframes slideUp {
+  from {
+    opacity: 0;
+    transform: translateY(30px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
   }
 }

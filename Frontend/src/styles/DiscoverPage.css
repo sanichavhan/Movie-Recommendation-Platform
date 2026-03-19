@@ -1,6 +1,6 @@
 .discover-page {
   background: #0a0e27;
-  color: #fff;
+  color: #ffffff;
   min-height: 100vh;
   display: flex;
   flex-direction: column;
@@ -45,9 +45,9 @@
 }
 .genre-button {
   padding: 12px 15px;
-  background: #222;
-  border: 1px solid #333;
-  color: #fff;
+  background: #1a1f3a;
+  border: 1px solid #2a2a2a;
+  color: #ffffff;
   border-radius: 20px;
   cursor: pointer;
 }

@@ -1,15 +1,38 @@
-// Colors
+// Colors - Modern Gradient Theme
 $primary-color: #ff6b6b;
-$background-dark: #0a0e27;
-$background-secondary: #111;
-$background-tertiary: #222;
-$border-color: #333;
-$text-primary: #fff;
-$text-secondary: #aaa;
-$text-muted: #ddd;
+$primary-light: #ff8787;
+$primary-dark: #d63031;
+$accent-cyan: #00d4ff;
+$accent-purple: #a855f7;
+$accent-orange: #ff6b35;
 $accent-gold: #ffd700;
+
+// Background Gradients
+$background-dark: #0a0e27;
+$background-secondary: #0f1629;
+$background-tertiary: #1a1f3a;
+$background-light: #2a3050;
+$gradient-primary: linear-gradient(135deg, #ff6b6b 0%, #ff8787 100%);
+$gradient-accent: linear-gradient(135deg, #00d4ff 0%, #a855f7 100%);
+$gradient-dark: linear-gradient(135deg, #0f1629 0%, #1a1f3a 100%);
+
+// Text Colors
+$text-primary: #ffffff;
+$text-secondary: #b0b0b0;
+$text-muted: #e0e0e0;
+$text-placeholder: #808080;
+
+// Status Colors
 $error-color: #dc3545;
 $success-color: #28a745;
+$warning-color: #ffc107;
+$info-color: #00d4ff;
+
+// Border & Decorative
+$border-color: #2a2a2a;
+$border-light: #3a3a3a;
+$border-accent: #ff6b6b;
+$shadow-color: rgba(0, 0, 0, 0.3);
 
 // Spacing
 $spacing-xs: 5px;
@@ -39,10 +62,18 @@ $font-4xl: 32px;
 $font-5xl: 36px;
 $font-6xl: 48px;
 
+// Font Weights
+$font-weight-light: 300;
+$font-weight-regular: 400;
+$font-weight-medium: 500;
+$font-weight-semibold: 600;
+$font-weight-bold: 700;
+
 // Transitions
 $transition-fast: 0.2s;
 $transition-base: 0.3s;
 $transition-slow: 0.5s;
+$transition-smooth: cubic-bezier(0.4, 0, 0.2, 1);
 
 // Breakpoints
 $breakpoint-sm: 480px;
