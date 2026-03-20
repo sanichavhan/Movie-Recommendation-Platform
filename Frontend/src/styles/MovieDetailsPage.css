@@ -1,5 +1,5 @@
 .movie-details-page {
-  background: linear-gradient(180deg, #0a0e27 0%, #0f1629 100%);
+  background: linear-gradient(180deg, #0e122a 0%, #0c0d10 100%);
   color: #ffffff;
   min-height: 100vh;
   display: flex;
@@ -169,7 +169,7 @@
 }
 
 .error-page {
-  background: linear-gradient(180deg, #0a0e27 0%, #0f1629 100%);
+  background: linear-gradient(180deg, #0e122a 0%, #0c0d10 100%);
   color: #ffffff;
   min-height: 100vh;
   display: flex;

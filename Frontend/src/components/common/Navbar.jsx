@@ -35,22 +35,13 @@ const Navbar = () => {
         {user ? (
           <>
             <span className="user-info">👤 {user.username || user.email}</span>
-            <button
-              onClick={toggleTheme}
-              className="theme-toggle-btn"
-              title={isDark ? "Switch to Light Mode" : "Switch to Dark Mode"}
-            >
-              {isDark ? "☀️" : "🌙"}
-            </button>
+            
             <button
               onClick={handleLogout}
               className="logout-btn"
             >
               Logout
             </button>
-          </>
-        ) : (
-          <>
             <button
               onClick={toggleTheme}
               className="theme-toggle-btn"
@@ -58,6 +49,10 @@ const Navbar = () => {
             >
               {isDark ? "☀️" : "🌙"}
             </button>
+          </>
+        ) : (
+          <>
+            
             <div className="auth-links">
               <Link to="/login" className="login-link">
                 Login
@@ -66,6 +61,13 @@ const Navbar = () => {
                 Register
               </Link>
             </div>
+            <button
+              onClick={toggleTheme}
+              className="theme-toggle-btn"
+              title={isDark ? "Switch to Light Mode" : "Switch to Dark Mode"}
+            >
+              {isDark ? "☀️" : "🌙"}
+            </button>
           </>
         )}
       </div>

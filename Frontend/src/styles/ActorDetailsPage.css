@@ -1,5 +1,5 @@
 .actor-details-page {
-  background: #0a0e27;
+  background: #0e122a;
   color: #ffffff;
   min-height: 100vh;
   display: flex;
@@ -38,7 +38,7 @@
 }
 .back-button:hover {
   background: #00d4ff;
-  color: #0a0e27;
+  color: #0e122a;
   transform: translateX(-5px);
 }
 .back-button:active {

@@ -18,7 +18,7 @@
   padding: 12px;
   border: 1px solid #2a2a2a;
   border-radius: 5px;
-  background: #1a1f3a;
+  background: #0a0b0e;
   color: #ffffff;
   font-size: 14px;
   font-family: inherit;
@@ -55,7 +55,7 @@
 }
 
 .login-page {
-  background: #0a0e27;
+  background: #0e122a;
   color: #ffffff;
   min-height: 100vh;
   display: flex;
@@ -71,7 +71,7 @@
 }
 
 .login-form-wrapper {
-  background: #0f1629;
+  background: #0c0d10;
   padding: 40px;
   border-radius: 10px;
   width: 100%;
