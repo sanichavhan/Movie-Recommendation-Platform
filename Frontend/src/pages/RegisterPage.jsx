@@ -61,7 +61,7 @@ const RegisterPage = () => {
                 email,
                 password
             })
-            navigate("/login")
+            navigate("/")
         } catch (err) {
             const errorMsg = err.response?.data?.message || err.message || "Registration failed. Please try again."
             setError(errorMsg)

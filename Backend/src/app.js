@@ -3,19 +3,15 @@ const cors = require("cors");
 const cookieParser = require('cookie-parser')
 const app = express();
 const morgan = require("morgan");
-const path = require("path");
-app.use(morgan("combined"));
 
-// CORS configuration from environment
-const corsOptions = {
-    origin: process.env.FRONTEND_URL || "http://localhost:5173",
+app.use(morgan("dev"));
+app.use(cors({
+    origin: "http://localhost:5173",
     credentials: true,
-};
-
-app.use(cors(corsOptions));
+}));
 app.use(express.json());
 app.use(cookieParser())
-app.use(express.static("./public"));
+app.use(express.static("./public"))
 const authRoutes = require('./routes/auth.route')
 const movieRoutes = require('./routes/movie.routes')
 const mediaRoutes = require('./routes/media.routes')
