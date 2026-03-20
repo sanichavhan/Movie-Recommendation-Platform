@@ -1,0 +1,264 @@
+.recommendation-modal-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: rgba(0, 0, 0, 0.8);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 1000;
+  padding: 20px;
+  backdrop-filter: blur(4px);
+  animation: fadeIn 0.3s ease-in-out;
+
+  @keyframes fadeIn {
+    from {
+      opacity: 0;
+    }
+    to {
+      opacity: 1;
+    }
+  }
+}
+
+.recommendation-modal {
+  background: linear-gradient(135deg, #1a1a2e 0%, #16213e 100%);
+  border-radius: 16px;
+  padding: 30px;
+  max-width: 900px;
+  width: 100%;
+  max-height: 90vh;
+  overflow-y: auto;
+  box-shadow: 0 20px 60px rgba(0, 0, 0, 0.9);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  position: relative;
+  animation: slideUp 0.3s ease-in-out;
+
+  @keyframes slideUp {
+    from {
+      transform: translateY(30px);
+      opacity: 0;
+    }
+    to {
+      transform: translateY(0);
+      opacity: 1;
+    }
+  }
+
+  .close-btn {
+    position: absolute;
+    top: 15px;
+    right: 15px;
+    background: rgba(255, 255, 255, 0.1);
+    border: none;
+    color: #fff;
+    font-size: 28px;
+    cursor: pointer;
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: all 0.3s ease;
+    z-index: 10;
+
+    &:hover {
+      background: rgba(255, 255, 255, 0.2);
+      transform: rotate(90deg);
+    }
+  }
+
+  .modal-header {
+    display: flex;
+    gap: 30px;
+    margin-bottom: 40px;
+    align-items: flex-start;
+
+    .movie-poster {
+      width: 200px;
+      height: 300px;
+      border-radius: 12px;
+      object-fit: cover;
+      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
+      flex-shrink: 0;
+    }
+
+    .movie-info {
+      flex: 1;
+      color: #fff;
+
+      h2 {
+        font-size: 32px;
+        margin-bottom: 15px;
+        font-weight: 700;
+        line-height: 1.2;
+      }
+
+      .movie-meta {
+        display: flex;
+        gap: 15px;
+        margin-bottom: 20px;
+        font-size: 16px;
+
+        .rating {
+          background: rgba(255, 215, 0, 0.2);
+          padding: 5px 12px;
+          border-radius: 20px;
+          color: #ffd700;
+          font-weight: 600;
+        }
+
+        .year {
+          color: #b0b0b0;
+          padding: 5px 12px;
+        }
+      }
+
+      .overview {
+        font-size: 14px;
+        line-height: 1.6;
+        color: #d0d0d0;
+        margin-bottom: 20px;
+        max-height: 100px;
+        overflow-y: auto;
+      }
+
+      .view-details-btn {
+        padding: 10px 24px;
+        background: linear-gradient(135deg, #e50914 0%, #830000 100%);
+        color: white;
+        border: none;
+        border-radius: 8px;
+        cursor: pointer;
+        font-size: 16px;
+        font-weight: 600;
+        transition: all 0.3s ease;
+
+        &:hover {
+          transform: translateY(-2px);
+          box-shadow: 0 8px 20px rgba(229, 9, 20, 0.4);
+        }
+      }
+    }
+  }
+
+  .similar-movies-section {
+    h3 {
+      font-size: 24px;
+      color: #fff;
+      margin-bottom: 20px;
+      font-weight: 600;
+    }
+
+    .similar-movies-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
+      gap: 15px;
+
+      .similar-movie-item {
+        cursor: pointer;
+        transition: transform 0.3s ease;
+
+        &:hover {
+          transform: scale(1.05);
+        }
+      }
+    }
+
+    .loading {
+      text-align: center;
+      color: #b0b0b0;
+      padding: 40px;
+      font-size: 16px;
+    }
+
+    .no-recommendations {
+      text-align: center;
+      color: #808080;
+      padding: 40px;
+      font-size: 16px;
+    }
+  }
+}
+
+/* Tablet and mobile responsive */
+@media (max-width: 768px) {
+  .recommendation-modal {
+    padding: 20px;
+
+    .modal-header {
+      flex-direction: column;
+      gap: 20px;
+
+      .movie-poster {
+        width: 150px;
+        height: 225px;
+        margin: 0 auto;
+      }
+
+      .movie-info {
+        h2 {
+          font-size: 24px;
+        }
+
+        .overview {
+          font-size: 13px;
+        }
+      }
+    }
+
+    .similar-movies-section {
+      .similar-movies-grid {
+        grid-template-columns: repeat(auto-fill, minmax(120px, 1fr));
+        gap: 10px;
+      }
+    }
+  }
+}
+
+@media (max-width: 480px) {
+  .recommendation-modal-overlay {
+    padding: 10px;
+  }
+
+  .recommendation-modal {
+    padding: 15px;
+
+    .modal-header {
+      .movie-poster {
+        width: 120px;
+        height: 180px;
+      }
+
+      .movie-info {
+        h2 {
+          font-size: 18px;
+        }
+
+        .overview {
+          font-size: 12px;
+          max-height: 80px;
+        }
+
+        .view-details-btn {
+          padding: 8px 16px;
+          font-size: 14px;
+        }
+      }
+    }
+
+    .similar-movies-section {
+      h3 {
+        font-size: 18px;
+      }
+
+      .similar-movies-grid {
+        grid-template-columns: repeat(auto-fill, minmax(100px, 1fr));
+        gap: 8px;
+      }
+    }
+  }
+}

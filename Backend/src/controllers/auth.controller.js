@@ -203,9 +203,132 @@ async function logout(req,res){
     }
 }
 
+async function saveSearchHistory(req, res) {
+    try {
+        const userId = req.user?.id;
+        const { query } = req.body;
+
+        if (!userId) {
+            return res.status(401).json({
+                message: "User not authenticated"
+            });
+        }
+
+        if (!query || query.trim() === "") {
+            return res.status(400).json({
+                message: "Search query is required"
+            });
+        }
+
+        const user = await userModel.findById(userId);
+
+        if (!user) {
+            return res.status(404).json({
+                message: "User not found"
+            });
+        }
+
+        // Add search to history (pre-save middleware will limit to 50)
+        user.searchHistory.unshift({
+            query: query.trim(),
+            createdAt: new Date()
+        });
+
+        await user.save();
+
+        res.status(200).json({
+            message: "Search saved successfully",
+            searchHistory: user.searchHistory.slice(0, 10) // Return latest 10
+        });
+    } catch (err) {
+        console.error("Save Search History Error:", err.message);
+        res.status(500).json({
+            message: err.message || "Failed to save search"
+        });
+    }
+}
+
+async function getSearchHistory(req, res) {
+    try {
+        const userId = req.user?.id;
+
+        if (!userId) {
+            return res.status(401).json({
+                message: "User not authenticated"
+            });
+        }
+
+        const user = await userModel.findById(userId);
+
+        if (!user) {
+            return res.status(404).json({
+                message: "User not found"
+            });
+        }
+
+        res.status(200).json({
+            message: "Search history retrieved successfully",
+            searchHistory: user.searchHistory
+        });
+    } catch (err) {
+        console.error("Get Search History Error:", err.message);
+        res.status(500).json({
+            message: err.message || "Failed to retrieve search history"
+        });
+    }
+}
+
+async function deleteSearchHistory(req, res) {
+    try {
+        const userId = req.user?.id;
+        const { searchId } = req.params;
+
+        if (!userId) {
+            return res.status(401).json({
+                message: "User not authenticated"
+            });
+        }
+
+        const user = await userModel.findById(userId);
+
+        if (!user) {
+            return res.status(404).json({
+                message: "User not found"
+            });
+        }
+
+        // Find and remove the search by ID
+        const initialLength = user.searchHistory.length;
+        user.searchHistory = user.searchHistory.filter(
+            search => search._id.toString() !== searchId
+        );
+
+        if (user.searchHistory.length === initialLength) {
+            return res.status(404).json({
+                message: "Search not found"
+            });
+        }
+
+        await user.save();
+
+        res.status(200).json({
+            message: "Search deleted successfully",
+            searchHistory: user.searchHistory
+        });
+    } catch (err) {
+        console.error("Delete Search History Error:", err.message);
+        res.status(500).json({
+            message: err.message || "Failed to delete search"
+        });
+    }
+}
+
 module.exports = {
     registerUser,
     userLogin,
     getMe,
-    logout
+    logout,
+    saveSearchHistory,
+    getSearchHistory,
+    deleteSearchHistory
 }

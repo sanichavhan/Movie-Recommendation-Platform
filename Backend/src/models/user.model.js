@@ -15,8 +15,21 @@ const userSchema = new mongoose.Schema({
         type: String,
         required: [ true, "Password is required" ],
         select: false
+    },
+    searchHistory: {
+        type: [{
+            query: {
+                type: String,
+                required: true
+            },
+            createdAt: {
+                type: Date,
+                default: Date.now
+            }
+        }],
+        default: []
     }
-})
+}, { timestamps: true })
 
 userSchema.pre("save", async function(next) {
 
@@ -25,6 +38,14 @@ userSchema.pre("save", async function(next) {
 
     const salt = await bcrypt.genSalt(10);
     this.password = await bcrypt.hash(this.password, salt);
+});
+
+// Keep search history limited to 50 items (most recent first)
+userSchema.pre("save", function(next) {
+    if(this.searchHistory && this.searchHistory.length > 50) {
+        this.searchHistory = this.searchHistory.slice(0, 50);
+    }
+    next();
 });
 
 // POST MIDDLEWARE (after saving)

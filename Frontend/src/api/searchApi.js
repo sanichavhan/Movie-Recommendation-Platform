@@ -17,3 +17,49 @@ export const searchMovies = async (query) => {
     throw error.response?.data || error.message;
   }
 };
+
+export const getSimilarMovies = async (movieId) => {
+  try {
+    const response = await axios.get(`/movies/${movieId}/similar`);
+    return response.data;
+  } catch (error) {
+    throw error.response?.data || error.message;
+  }
+};
+
+export const getRecommendedMovies = async (movieId) => {
+  try {
+    const response = await axios.get(`/movies/${movieId}/recommendations`);
+    return response.data;
+  } catch (error) {
+    throw error.response?.data || error.message;
+  }
+};
+
+// Search History API Functions
+export const saveSearchHistory = async (query) => {
+  try {
+    const response = await axios.post("/auth/search-history", { query });
+    return response.data;
+  } catch (error) {
+    throw error.response?.data || error.message;
+  }
+};
+
+export const getSearchHistory = async () => {
+  try {
+    const response = await axios.get("/auth/search-history");
+    return response.data;
+  } catch (error) {
+    throw error.response?.data || error.message;
+  }
+};
+
+export const deleteSearchHistory = async (searchId) => {
+  try {
+    const response = await axios.delete(`/auth/search-history/${searchId}`);
+    return response.data;
+  } catch (error) {
+    throw error.response?.data || error.message;
+  }
+};

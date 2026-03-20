@@ -2,6 +2,7 @@ import React from "react"
 import { useParams, useNavigate } from "react-router-dom"
 import { useMovieDetails } from "../hooks/movies/useMovieDetails"
 import { useCast } from "../hooks/movies/useCast"
+import { useSimilarMovies } from "../hooks/search/useSimilarMovies"
 
 import Loader from "../components/common/Loader"
 import ErrorMessage from "../components/common/ErrorMessage"
@@ -9,6 +10,7 @@ import EmptyState from "../components/common/EmptyState"
 import Navbar from "../components/common/Navbar"
 import Footer from "../components/common/Footer"
 import CastComponent from "../components/movie/CastComponent"
+import SimilarMoviesSection from "../components/search/SimilarMoviesSection"
 import "../styles/MovieDetailsPage.scss"
 
 const MovieDetailsPage = () => {
@@ -18,6 +20,7 @@ const MovieDetailsPage = () => {
 
     const { movie, loading, error } = useMovieDetails(id)
     const { cast, loading: castLoading } = useCast(id)
+    const { movies: similarMovies, loading: similarLoading, error: similarError } = useSimilarMovies(id)
 
     if (loading) return <Loader />
 
@@ -156,6 +159,14 @@ const MovieDetailsPage = () => {
                 </div>
 
                 {/* Cast Section */}
+
+                {/* Similar Movies Section */}
+                <SimilarMoviesSection 
+                    movies={similarMovies}
+                    loading={similarLoading}
+                    error={similarError}
+                    title="Similar Movies"
+                />
                 {!castLoading && <CastComponent cast={cast} />}
             </div>
 
