@@ -5,10 +5,13 @@ const app = express();
 const morgan = require("morgan");
 
 app.use(morgan("dev"));
-app.use(cors({
-    origin: "http://localhost:5173",
+
+// Dynamic CORS for production
+const corsOptions = {
+    origin: process.env.FRONTEND_URL || "http://localhost:5173",
     credentials: true,
-}));
+};
+app.use(cors(corsOptions));
 app.use(express.json());
 app.use(cookieParser())
 app.use(express.static("./public"))
