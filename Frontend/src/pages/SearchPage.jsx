@@ -26,9 +26,10 @@ const SearchPage = () => {
     const { movies, loading, error } = useSearch(query)
     const { movies: similarMovies, loading: similarLoading } = useSimilarMovies(selectedMovieForRecommendation?.id)
     const { movies: trendingMovies } = useTrendingMovies()
-    const { savedSearches, saveSearch } = useSavedSearches(user?.id)
+    const { savedSearches, saveSearch, error: savedSearchError, loading: savedSearchLoading } = useSavedSearches(user?.id)
     const inputRef = useRef(null)
     const resultsRef = useRef(null)
+    const [networkError, setNetworkError] = useState(null)
 
     useEffect(() => {
         if (resultsRef.current && movies && movies.length > 0 && query) {
@@ -42,9 +43,14 @@ const SearchPage = () => {
 
     const handleSearchSubmit = (searchQuery) => {
         if (searchQuery.trim()) {
+            setNetworkError(null) // Clear previous network errors
+            
             // If user is logged in, save to database
             if (user?.id) {
-                saveSearch(searchQuery)
+                saveSearch(searchQuery).catch(err => {
+                    console.error("Failed to save search:", err)
+                    // Still perform search even if save fails
+                })
             }
             
             // Also save to localStorage for unauthenticated users or as backup
@@ -107,16 +113,32 @@ const SearchPage = () => {
                             className="search-input"
                             onFocus={handleSearchFocus}
                             onBlur={handleSearchBlur}
+                            disabled={loading}
                         />
                     </div>
                 </div>
 
-                {error && <ErrorMessage message={error} />}
+                {error && <ErrorMessage message={`Search Error: ${error}`} />}
+                {networkError && <ErrorMessage message={`Network Error: ${networkError}. Check your connection.`} />}
 
                 {!query || query.trim() === "" ? (
                     <div className="search-initial">
+                        {/* Saved Searches Loading */}
+                        {user?.id && savedSearchLoading && (
+                            <div style={{ padding: '20px', textAlign: 'center' }}>
+                                <p style={{ color: '#888' }}>Loading your saved searches...</p>
+                            </div>
+                        )}
+
+                        {/* Saved Searches Error */}
+                        {user?.id && savedSearchError && (
+                            <div style={{ padding: '20px', marginBottom: '20px', backgroundColor: '#ffebee', borderRadius: '8px', border: '1px solid #ff6b6b' }}>
+                                <p style={{ color: '#ff6b6b', margin: 0 }}>⚠️ Couldn't load saved searches: {savedSearchError}</p>
+                            </div>
+                        )}
+
                         {/* User's Saved Searches (Database) */}
-                        {user?.id && savedSearches.length > 0 && (
+                        {user?.id && !savedSearchLoading && savedSearches.length > 0 && !savedSearchError && (
                             <div className="saved-searches">
                                 <div className="saved-searches-header">
                                     <h3>Your Saved Searches</h3>
@@ -170,17 +192,47 @@ const SearchPage = () => {
                         {/* Trending Section */}
                         <div className="search-trending">
                             <h2 className="trending-title">Trending in India</h2>
-                            <div className="trending-carousel">
-                                {trendingMovies && trendingMovies.slice(0, 20).map(movie => (
-                                    <div key={movie.id} className="carousel-item">
-                                        <MovieCard movie={movie} />
-                                    </div>
-                                ))}
-                            </div>
+                            {!trendingMovies || trendingMovies.length === 0 ? (
+                                <div style={{ padding: '40px 20px', textAlign: 'center', color: '#888' }}>
+                                    <p>Loading trending movies... or check your internet connection</p>
+                                </div>
+                            ) : (
+                                <div className="trending-carousel">
+                                    {trendingMovies.slice(0, 20).map(movie => (
+                                        <div key={movie.id} className="carousel-item">
+                                            <MovieCard movie={movie} />
+                                        </div>
+                                    ))}
+                                </div>
+                            )}
                         </div>
                     </div>
                 ) : loading ? (
-                    <Loader />
+                    <div style={{ textAlign: 'center', padding: '40px 20px' }}>
+                        <Loader />
+                        <p style={{ marginTop: '20px', color: '#888', fontSize: '14px' }}>Searching... (timeout in 10s)</p>
+                    </div>
+                ) : error ? (
+                    <div className="search-empty">
+                        <div className="empty-icon">⚠️</div>
+                        <h2>Search Failed</h2>
+                        <p style={{ marginBottom: '15px' }}>{error}</p>
+                        <button 
+                            onClick={() => handleSearchSubmit(query)}
+                            style={{
+                                padding: '10px 20px',
+                                background: 'linear-gradient(90deg, #ff6b6b, #00d4ff)',
+                                border: 'none',
+                                borderRadius: '6px',
+                                color: '#fff',
+                                cursor: 'pointer',
+                                fontSize: '14px',
+                                fontWeight: '500'
+                            }}
+                        >
+                            Try Again
+                        </button>
+                    </div>
                 ) : movies && movies.length === 0 ? (
                     <div className="search-empty">
                         <div className="empty-icon">🎬</div>
@@ -232,7 +284,6 @@ const SearchPage = () => {
                     onClose={closeRecommendationModal}
                 />
             )}
-
             <Footer />
         </div>
     )
