@@ -63,3 +63,12 @@ export const deleteSearchHistory = async (searchId) => {
     throw error.response?.data || error.message;
   }
 };
+
+export const searchKeywords = async (query) => {
+  try {
+    const response = await axios.get("/keywords", { params: { query } });
+    return response.data;
+  } catch (error) {
+    throw error.response?.data || error.message;
+  }
+};

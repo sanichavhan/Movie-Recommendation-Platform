@@ -1,12 +1,42 @@
 import { Link, useNavigate } from "react-router-dom";
 import { useAuth } from "../../context/AuthContext";
 import { useTheme } from "../../context/ThemeContext";
+import { useState, useEffect } from "react";
 import "../../styles/Navbar.scss";
 
 const Navbar = () => {
   const { user, logout } = useAuth();
   const { isDark, toggleTheme } = useTheme();
   const navigate = useNavigate();
+  const [isVisible, setIsVisible] = useState(true);
+  const [lastScrollY, setLastScrollY] = useState(0);
+
+  useEffect(() => {
+    const handleScroll = () => {
+      const currentScrollY = window.scrollY;
+
+      // Show navbar when at the top
+      if (currentScrollY < 50) {
+        setIsVisible(true);
+      }
+      // Hide navbar when scrolling down
+      else if (currentScrollY > lastScrollY) {
+        setIsVisible(false);
+      }
+      // Show navbar when scrolling up
+      else if (currentScrollY < lastScrollY) {
+        setIsVisible(true);
+      }
+
+      setLastScrollY(currentScrollY);
+    };
+
+    window.addEventListener("scroll", handleScroll, { passive: true });
+
+    return () => {
+      window.removeEventListener("scroll", handleScroll);
+    };
+  }, [lastScrollY]);
 
   const handleLogout = async () => {
     try {
@@ -18,7 +48,7 @@ const Navbar = () => {
   };
 
   return (
-    <nav className="navbar">
+    <nav className={`navbar ${isVisible ? "navbar-visible" : "navbar-hidden"}`}>
       <h2 className="navbar-brand">🎬 FilmyZone</h2>
 
       <div className="navbar-center">

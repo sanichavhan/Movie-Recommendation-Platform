@@ -41,15 +41,12 @@ lerna-debug.log*
 Thumbs.db
 desktop.ini
 
-# Documentation Text Files (keep only essential)
+# Documentation and Text Files (all markdown and text files)
 *.txt
-START_HERE.md
-SETUP_COMPLETE.md
-REFACTORING_SUMMARY.md
-DEPLOY_RENDER.md
-QUICKSTART.md
-TROUBLESHOOTING.md
-DEPLOY_RENDER_QUICK.md
+*.md
+!README.md
+!Backend/README.md
+!Frontend/README.md
 
 # Temporary Files
 *.tmp

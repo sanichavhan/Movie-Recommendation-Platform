@@ -24,3 +24,7 @@ export const getSearchHistory = async () => {
 export const deleteSearchHistory = async (searchId) => {
   return await searchApi.deleteSearchHistory(searchId);
 };
+
+export const searchKeywords = async (query) => {
+  return await searchApi.searchKeywords(query);
+};
