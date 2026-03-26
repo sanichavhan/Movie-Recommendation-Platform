@@ -78,7 +78,7 @@ async function registerUser(req,res){
             })
         }
         
-        res.status(500).json({
+        return res.status(500).json({
             message:err.message || "Registration failed"
         })
     }
@@ -147,7 +147,7 @@ async function userLogin(req,res) {
             })
         }
         
-        res.status(500).json({
+        return res.status(500).json({
             message:err.message || "Login failed"
         })
     }
@@ -176,7 +176,7 @@ async function getMe(req,res){
             })
         }
         
-        res.status(500).json({
+        return res.status(500).json({
             message:err.message || "Failed to fetch user"
         })
     }
@@ -197,7 +197,7 @@ async function logout(req,res){
         })
     }catch(err){
         console.error("Logout Error:", err.message)
-        res.status(500).json({
+        return res.status(500).json({
             message:err.message || "Logout failed"
         })
     }
@@ -242,7 +242,7 @@ async function saveSearchHistory(req, res) {
         });
     } catch (err) {
         console.error("Save Search History Error:", err.message);
-        res.status(500).json({
+        return res.status(500).json({
             message: err.message || "Failed to save search"
         });
     }
@@ -272,7 +272,7 @@ async function getSearchHistory(req, res) {
         });
     } catch (err) {
         console.error("Get Search History Error:", err.message);
-        res.status(500).json({
+        return res.status(500).json({
             message: err.message || "Failed to retrieve search history"
         });
     }
@@ -317,7 +317,7 @@ async function deleteSearchHistory(req, res) {
         });
     } catch (err) {
         console.error("Delete Search History Error:", err.message);
-        res.status(500).json({
+        return res.status(500).json({
             message: err.message || "Failed to delete search"
         });
     }

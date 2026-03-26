@@ -34,7 +34,7 @@ const userSchema = new mongoose.Schema({
 userSchema.pre("save", async function(next) {
 
     // check if password is modified
-    if(!this.isModified("password")) return next();
+    if(!this.isModified("password"));
 
     const salt = await bcrypt.genSalt(10);
     this.password = await bcrypt.hash(this.password, salt);
@@ -45,7 +45,7 @@ userSchema.pre("save", function(next) {
     if(this.searchHistory && this.searchHistory.length > 50) {
         this.searchHistory = this.searchHistory.slice(0, 50);
     }
-    next();
+    // next();
 });
 
 // POST MIDDLEWARE (after saving)
