@@ -42,11 +42,11 @@ const Navbar = () => {
     try {
       await logout();
       // Refresh the page to clear all UI state and remove user data
-      window.location.href = '/';
+      navigate("/");
     } catch (err) {
       console.error('Logout failed:', err);
       // Still refresh on error to ensure user is logged out
-      window.location.href = '/login';
+      navigate("/");
     }
   };
 
