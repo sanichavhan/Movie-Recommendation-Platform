@@ -57,7 +57,10 @@ export const AuthProvider = ({ children }) => {
       setUser(null);
       setError(null);
     } catch (err) {
-      setError(err.message || 'Logout failed');
+      console.error('Logout error:', err);
+      // Always clear user state even if logout API fails
+      setUser(null);
+      setError(null);
       throw err;
     }
   };

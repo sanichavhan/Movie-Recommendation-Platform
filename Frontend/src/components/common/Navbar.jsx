@@ -41,12 +41,16 @@ const Navbar = () => {
   const handleLogout = async () => {
     try {
       await logout();
-      // Refresh the page to clear all UI state and remove user data
-      navigate("/");
+      // Navigate after successful logout to ensure state is updated
+      setTimeout(() => {
+        window.location.href = "/";
+      }, 100);
     } catch (err) {
       console.error('Logout failed:', err);
-      // Still refresh on error to ensure user is logged out
-      navigate("/");
+      // Still navigate on error to ensure user is logged out
+      setTimeout(() => {
+        window.location.href = "/";
+      }, 100);
     }
   };
 
