@@ -7,18 +7,60 @@ yarn-error.log*
 pnpm-debug.log*
 lerna-debug.log*
 
+# Dependencies
 node_modules
 dist
 dist-ssr
+build
 *.local
+package-lock.json
+yarn.lock
+pnpm-lock.yaml
 
 # Editor directories and files
+.vscode
 .vscode/*
 !.vscode/extensions.json
 .idea
+.idea/
 .DS_Store
 *.suo
 *.ntvs*
 *.njsproj
 *.sln
 *.sw?
+*.swp
+*.swo
+*~
+
+# Environment
+.env
+.env.local
+.env.development
+.env.development.local
+.env.test.local
+.env.production.local
+
+# Text Files (Documentation)
+*.txt
+*.md
+!README.md
+START_HERE.md
+SETUP_COMPLETE.md
+REFACTORING_SUMMARY.md
+QUICKSTART.md
+TROUBLESHOOTING.md
+
+# Testing
+coverage/
+.nyc_output/
+
+# Temporary Files
+*.tmp
+*.temp
+*.cache
+.cache/
+
+# Build cache
+.eslintcache
+

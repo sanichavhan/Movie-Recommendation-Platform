@@ -1,0 +1,64 @@
+# Root Level Ignores
+
+# Node modules and dependencies
+**/node_modules/
+package-lock.json
+yarn.lock
+pnpm-lock.yaml
+
+# Environment variables (KEEP THESE PRIVATE!)
+Backend/.env
+Backend/.env.local
+Backend/.env.*.local
+Frontend/.env.local
+Frontend/.env.*.local
+
+# Build outputs and dist files
+**/dist/
+**/build/
+**/out/
+
+# Logs
+logs/
+*.log
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+pnpm-debug.log*
+lerna-debug.log*
+
+# IDE and Editor
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
+*.sublime-project
+*.sublime-workspace
+
+# OS Files
+.DS_Store
+Thumbs.db
+desktop.ini
+
+# Documentation Text Files (keep only essential)
+*.txt
+START_HERE.md
+SETUP_COMPLETE.md
+REFACTORING_SUMMARY.md
+
+# Temporary Files
+*.tmp
+*.temp
+.cache/
+
+# Testing
+coverage/
+.nyc_output/
+
+# Cache
+.eslintcache
+.turbo/
+
+# Local development
+.env*.local
