@@ -16,5 +16,5 @@ services:
       - key: TMDB_API_KEY
         sync: false
       - key: FRONTEND_URL
-        sync: false
+        sync: true
       - key: PORT

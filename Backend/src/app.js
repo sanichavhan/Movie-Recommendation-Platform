@@ -13,6 +13,8 @@ const corsOptions = {
     methods: ['GET', 'POST', 'PUT', 'DELETE', 'PATCH', 'OPTIONS'],
     allowedHeaders: ['Content-Type', 'Authorization']
 };
+console.log('✅ CORS Origin:', corsOptions.origin);
+console.log('✅ NODE_ENV:', process.env.NODE_ENV);
 app.use(cors(corsOptions));
 app.use(express.json({ limit: '50mb' }));
 app.use(express.urlencoded({ limit: '50mb', extended: true }));

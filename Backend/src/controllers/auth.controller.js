@@ -45,6 +45,7 @@ async function registerUser(req,res){
         res.cookie("token",token,{
             httpOnly:true,
             secure:isProduction,
+            sameSite:'lax',
             maxAge:3*24*60*60*1000,
             path:'/'
         })
@@ -125,10 +126,12 @@ async function userLogin(req,res) {
         const isProduction = process.env.NODE_ENV === 'production';
         res.cookie('token',token,{
             httpOnly:true,
-            secure:isProduction,
+            secure:true,  // Always secure in production for sameSite: none
+            sameSite:'none',  // Allow cross-origin cookies
             maxAge:3*24*60*60*1000,
             path:'/'
         })
+        console.log('✅ Token Cookie Set - Secure: true, SameSite: none');
 
         res.status(200).json({
             message: "User logged in successfully",
@@ -198,8 +201,8 @@ async function logout(req,res){
         const isProduction = process.env.NODE_ENV === 'production';
         res.clearCookie("token",{
             httpOnly:true,
-            secure:isProduction,
-            sameSite:'lax',
+            secure:true,  // Always secure in production for sameSite: none
+            sameSite:'none',  // Allow cross-origin cookies
             path:'/'
         })
 

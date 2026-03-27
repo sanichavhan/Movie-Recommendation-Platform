@@ -6,6 +6,8 @@ async function authUser(req,res,next){
     const token = req.cookies.token;
 
     if (!token) {
+        console.warn('❌ Auth Token Missing - Cookies:', Object.keys(req.cookies));
+        console.warn('❌ Auth Headers:', req.headers);
         return res.status(401).json({
             message: "Token not provided"
         })
