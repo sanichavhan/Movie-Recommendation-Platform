@@ -8,9 +8,4 @@ router.post('/login',authController.userLogin)
 router.get('/getme',authMiddleware.authUser, authController.getMe)
 router.get('/logout',authMiddleware.authUser, authController.logout)
 
-// Search History Routes
-router.post('/search-history', authMiddleware.authUser, authController.saveSearchHistory)
-router.get('/search-history', authMiddleware.authUser, authController.getSearchHistory)
-router.delete('/search-history/:searchId', authMiddleware.authUser, authController.deleteSearchHistory)
-
 module.exports = router

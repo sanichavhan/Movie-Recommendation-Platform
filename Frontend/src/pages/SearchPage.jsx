@@ -1,7 +1,6 @@
 import React, { useState, useCallback, useRef, useEffect, useContext } from "react"
 import { useSearch } from "../hooks/search/useSearch"
 import { useSimilarMovies } from "../hooks/search/useSimilarMovies"
-import { useSavedSearches } from "../hooks/search/useSavedSearches"
 import useTrendingMovies from "../hooks/movies/useTrendingMovies"
 import { AuthContext } from "../context/AuthContext"
 import MovieCard from "../components/movie/MovieCard"
@@ -26,7 +25,6 @@ const SearchPage = () => {
     const { movies, loading, error } = useSearch(query)
     const { movies: similarMovies, loading: similarLoading } = useSimilarMovies(selectedMovieForRecommendation?.id)
     const { movies: trendingMovies } = useTrendingMovies()
-    const { savedSearches, saveSearch, error: savedSearchError, loading: savedSearchLoading } = useSavedSearches(user?.id)
     const inputRef = useRef(null)
     const resultsRef = useRef(null)
     const [networkError, setNetworkError] = useState(null)
@@ -45,15 +43,7 @@ const SearchPage = () => {
         if (searchQuery.trim()) {
             setNetworkError(null) // Clear previous network errors
             
-            // If user is logged in, save to database
-            if (user?.id) {
-                saveSearch(searchQuery).catch(err => {
-                    console.error("Failed to save search:", err)
-                    // Still perform search even if save fails
-                })
-            }
-            
-            // Also save to localStorage for unauthenticated users or as backup
+            // Save to localStorage for recent searches
             const updated = [searchQuery, ...recentSearches.filter(s => s !== searchQuery)].slice(0, 5)
             setRecentSearches(updated)
             localStorage.setItem('recentSearches', JSON.stringify(updated))
@@ -123,48 +113,8 @@ const SearchPage = () => {
 
                 {!query || query.trim() === "" ? (
                     <div className="search-initial">
-                        {/* Saved Searches Loading */}
-                        {user?.id && savedSearchLoading && (
-                            <div style={{ padding: '20px', textAlign: 'center' }}>
-                                <p style={{ color: '#888' }}>Loading your saved searches...</p>
-                            </div>
-                        )}
-
-                        {/* Saved Searches Error */}
-                        {user?.id && savedSearchError && (
-                            <div style={{ padding: '20px', marginBottom: '20px', backgroundColor: '#ffebee', borderRadius: '8px', border: '1px solid #ff6b6b' }}>
-                                <p style={{ color: '#ff6b6b', margin: 0 }}>⚠️ Couldn't load saved searches: {savedSearchError}</p>
-                            </div>
-                        )}
-
-                        {/* User's Saved Searches (Database) */}
-                        {user?.id && !savedSearchLoading && savedSearches.length > 0 && !savedSearchError && (
-                            <div className="saved-searches">
-                                <div className="saved-searches-header">
-                                    <h3>Your Saved Searches</h3>
-                                    <span className="saved-count">{savedSearches.length}</span>
-                                </div>
-                                <div className="saved-searches-list">
-                                    {savedSearches.map((search) => (
-                                        <div key={search._id} className="saved-search-item">
-                                            <span className="star-icon">⭐</span>
-                                            <span 
-                                                className="saved-text"
-                                                onClick={() => handleRecentSearchClick(search.query)}
-                                            >
-                                                {search.query}
-                                            </span>
-                                            <span className="search-date">
-                                                {new Date(search.createdAt).toLocaleDateString()}
-                                            </span>
-                                        </div>
-                                    ))}
-                                </div>
-                            </div>
-                        )}
-
                         {/* Recent Searches (localStorage) */}
-                        {recentSearches.length > 0 && (
+                        {recentSearches && recentSearches.length > 0 && (
                             <div className="recent-searches">
                                 <h3>Recent Searches</h3>
                                 <div className="recent-searches-list">

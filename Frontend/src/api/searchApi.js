@@ -36,34 +36,6 @@ export const getRecommendedMovies = async (movieId) => {
   }
 };
 
-// Search History API Functions
-export const saveSearchHistory = async (query) => {
-  try {
-    const response = await axios.post("/auth/search-history", { query });
-    return response.data;
-  } catch (error) {
-    throw error.response?.data || error.message;
-  }
-};
-
-export const getSearchHistory = async () => {
-  try {
-    const response = await axios.get("/auth/search-history");
-    return response.data;
-  } catch (error) {
-    throw error.response?.data || error.message;
-  }
-};
-
-export const deleteSearchHistory = async (searchId) => {
-  try {
-    const response = await axios.delete(`/auth/search-history/${searchId}`);
-    return response.data;
-  } catch (error) {
-    throw error.response?.data || error.message;
-  }
-};
-
 export const searchKeywords = async (query) => {
   try {
     const response = await axios.get("/keywords", { params: { query } });
