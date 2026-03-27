@@ -45,7 +45,7 @@ async function registerUser(req,res){
         res.cookie("token",token,{
             httpOnly:true,
             secure:isProduction,
-            sameSite:'strict',
+            sameSite:'lax',
             maxAge:3*24*60*60*1000,
             path:'/'
         })
@@ -201,7 +201,7 @@ async function logout(req,res){
         res.clearCookie("token",{
             httpOnly:true,
             secure:isProduction,
-            sameSite:'strict',
+            sameSite:'lax',
             path:'/'
         })
 
